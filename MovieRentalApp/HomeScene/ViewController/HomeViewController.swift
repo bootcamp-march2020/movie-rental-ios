@@ -41,13 +41,14 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     //MARK: Views and Constraints
     private (set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 20
-        layout.minimumInteritemSpacing = 20
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.dataSource = self
+        view.delegate = self
         view.backgroundColor = .white
-        view.register(UICollectionViewCell.self, forCellWithReuseIdentifier: kCellId)
+        view.register(MovieCell.self, forCellWithReuseIdentifier: kCellId)
         return view
     }()
     
@@ -56,10 +57,10 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     }
     
     private func setupConstraints() {
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
     }
     
 }
@@ -68,13 +69,22 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
 extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCellId, for: indexPath)
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCellId, for: indexPath) as! MovieCell
+     //   cell.updateCell(movie: movies[indexPath.row])
+        cell.backgroundColor = UIColor.lightGray
         return cell
+    }
+    
+}
+
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (collectionView.bounds.width / 2) - 5
+        return CGSize.init(width: width, height: width * 1.5)
     }
     
 }

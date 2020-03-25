@@ -13,6 +13,8 @@
 		2AE55579242B1A00008A6D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55577242B1A00008A6D81 /* LaunchScreen.storyboard */; };
 		2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */; };
 		2AE5558F242B1A01008A6D81 /* MovieRentalAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5558E242B1A01008A6D81 /* MovieRentalAppUITests.swift */; };
+		2AE555A2242B7643008A6D81 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A1242B7643008A6D81 /* MovieCell.swift */; };
+		2AE555A4242B884B008A6D81 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A3242B884B008A6D81 /* AsyncImageView.swift */; };
 		9BBDDDF5242B5D5300D810AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF4242B5D5300D810AD /* APIManager.swift */; };
 		9BBDDDF7242B5D5E00D810AD /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */; };
 		9BBDDDFA242B5D8400D810AD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */; };
@@ -56,6 +58,8 @@
 		2AE5558A242B1A01008A6D81 /* MovieRentalAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieRentalAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE5558E242B1A01008A6D81 /* MovieRentalAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRentalAppUITests.swift; sourceTree = "<group>"; };
 		2AE55590242B1A01008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AE555A1242B7643008A6D81 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		2AE555A3242B884B008A6D81 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		9BBDDDF4242B5D5300D810AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -148,6 +152,14 @@
 			path = MovieRentalAppUITests;
 			sourceTree = "<group>";
 		};
+		2AE555A0242B7627008A6D81 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2AE555A1242B7643008A6D81 /* MovieCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		9BBDDDF0242B5D2500D810AD /* HomeScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +174,7 @@
 		9BBDDDF1242B5D3300D810AD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2AE555A0242B7627008A6D81 /* Cells */,
 				9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */,
 			);
 			path = ViewController;
@@ -180,6 +193,7 @@
 			children = (
 				9BBDDDF4242B5D5300D810AD /* APIManager.swift */,
 				9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */,
+				2AE555A3242B884B008A6D81 /* AsyncImageView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -351,6 +365,7 @@
 			files = (
 				9BBDDE06242B620700D810AD /* MovieModel.swift in Sources */,
 				9BBDDDFA242B5D8400D810AD /* HomeViewController.swift in Sources */,
+				2AE555A2242B7643008A6D81 /* MovieCell.swift in Sources */,
 				9BBDDE01242B5E3700D810AD /* HomePresenterProtocol.swift in Sources */,
 				9BBDDE0C242B68D700D810AD /* HomeInteractor.swift in Sources */,
 				9BBDDDF5242B5D5300D810AD /* APIManager.swift in Sources */,
@@ -358,6 +373,7 @@
 				9BBDDDFC242B5DA100D810AD /* HomePresenter.swift in Sources */,
 				2AE55571242B19FF008A6D81 /* ViewController.swift in Sources */,
 				9BBDDE0E242B68F000D810AD /* HomeInteractorProtocol.swift in Sources */,
+				2AE555A4242B884B008A6D81 /* AsyncImageView.swift in Sources */,
 				9BBDDDFE242B5DEF00D810AD /* HomeViewControllerProtocol.swift in Sources */,
 				2AE5556D242B19FF008A6D81 /* AppDelegate.swift in Sources */,
 			);
