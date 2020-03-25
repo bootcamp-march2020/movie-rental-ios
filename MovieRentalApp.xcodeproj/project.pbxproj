@@ -13,6 +13,17 @@
 		2AE55579242B1A00008A6D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55577242B1A00008A6D81 /* LaunchScreen.storyboard */; };
 		2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */; };
 		2AE5558F242B1A01008A6D81 /* MovieRentalAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5558E242B1A01008A6D81 /* MovieRentalAppUITests.swift */; };
+		9BBDDDF5242B5D5300D810AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF4242B5D5300D810AD /* APIManager.swift */; };
+		9BBDDDF7242B5D5E00D810AD /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */; };
+		9BBDDDFA242B5D8400D810AD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */; };
+		9BBDDDFC242B5DA100D810AD /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDFB242B5DA100D810AD /* HomePresenter.swift */; };
+		9BBDDDFE242B5DEF00D810AD /* HomeViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDFD242B5DEF00D810AD /* HomeViewControllerProtocol.swift */; };
+		9BBDDE01242B5E3700D810AD /* HomePresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDE00242B5E3700D810AD /* HomePresenterProtocol.swift */; };
+		9BBDDE04242B604000D810AD /* HomeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDE03242B604000D810AD /* HomeViewControllerTests.swift */; };
+		9BBDDE06242B620700D810AD /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDE05242B620700D810AD /* MovieModel.swift */; };
+		9BBDDE08242B659000D810AD /* HomePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDE07242B659000D810AD /* HomePresenterTests.swift */; };
+		9BBDDE0C242B68D700D810AD /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDE0B242B68D700D810AD /* HomeInteractor.swift */; };
+		9BBDDE0E242B68F000D810AD /* HomeInteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDE0D242B68F000D810AD /* HomeInteractorProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +56,17 @@
 		2AE5558A242B1A01008A6D81 /* MovieRentalAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieRentalAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE5558E242B1A01008A6D81 /* MovieRentalAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRentalAppUITests.swift; sourceTree = "<group>"; };
 		2AE55590242B1A01008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9BBDDDF4242B5D5300D810AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
+		9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		9BBDDDFB242B5DA100D810AD /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		9BBDDDFD242B5DEF00D810AD /* HomeViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerProtocol.swift; sourceTree = "<group>"; };
+		9BBDDE00242B5E3700D810AD /* HomePresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterProtocol.swift; sourceTree = "<group>"; };
+		9BBDDE03242B604000D810AD /* HomeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerTests.swift; sourceTree = "<group>"; };
+		9BBDDE05242B620700D810AD /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		9BBDDE07242B659000D810AD /* HomePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenterTests.swift; sourceTree = "<group>"; };
+		9BBDDE0B242B68D700D810AD /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		9BBDDE0D242B68F000D810AD /* HomeInteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractorProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +117,9 @@
 		2AE5556B242B19FF008A6D81 /* MovieRentalApp */ = {
 			isa = PBXGroup;
 			children = (
+				9BBDDDF8242B5D7400D810AD /* Models */,
+				9BBDDDF3242B5D4400D810AD /* Common */,
+				9BBDDDF0242B5D2500D810AD /* HomeScene */,
 				2AE5556C242B19FF008A6D81 /* AppDelegate.swift */,
 				2AE55570242B19FF008A6D81 /* ViewController.swift */,
 				2AE55575242B1A00008A6D81 /* Assets.xcassets */,
@@ -107,6 +132,7 @@
 		2AE55582242B1A00008A6D81 /* MovieRentalAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				9BBDDE02242B600600D810AD /* HomeSceneTests */,
 				2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */,
 				2AE55585242B1A01008A6D81 /* Info.plist */,
 			);
@@ -120,6 +146,77 @@
 				2AE55590242B1A01008A6D81 /* Info.plist */,
 			);
 			path = MovieRentalAppUITests;
+			sourceTree = "<group>";
+		};
+		9BBDDDF0242B5D2500D810AD /* HomeScene */ = {
+			isa = PBXGroup;
+			children = (
+				9BBDDDFF242B5E2300D810AD /* Contracts */,
+				9BBDDDF1242B5D3300D810AD /* ViewController */,
+				9BBDDDF2242B5D3C00D810AD /* Presenter */,
+				9BBDDE0A242B68AE00D810AD /* Interactor */,
+			);
+			path = HomeScene;
+			sourceTree = "<group>";
+		};
+		9BBDDDF1242B5D3300D810AD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9BBDDDF2242B5D3C00D810AD /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				9BBDDDFB242B5DA100D810AD /* HomePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9BBDDDF3242B5D4400D810AD /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				9BBDDDF4242B5D5300D810AD /* APIManager.swift */,
+				9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		9BBDDDF8242B5D7400D810AD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9BBDDE05242B620700D810AD /* MovieModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9BBDDDFF242B5E2300D810AD /* Contracts */ = {
+			isa = PBXGroup;
+			children = (
+				9BBDDDFD242B5DEF00D810AD /* HomeViewControllerProtocol.swift */,
+				9BBDDE00242B5E3700D810AD /* HomePresenterProtocol.swift */,
+				9BBDDE0D242B68F000D810AD /* HomeInteractorProtocol.swift */,
+			);
+			name = Contracts;
+			sourceTree = "<group>";
+		};
+		9BBDDE02242B600600D810AD /* HomeSceneTests */ = {
+			isa = PBXGroup;
+			children = (
+				9BBDDE03242B604000D810AD /* HomeViewControllerTests.swift */,
+				9BBDDE07242B659000D810AD /* HomePresenterTests.swift */,
+			);
+			path = HomeSceneTests;
+			sourceTree = "<group>";
+		};
+		9BBDDE0A242B68AE00D810AD /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				9BBDDE0B242B68D700D810AD /* HomeInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +349,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BBDDE06242B620700D810AD /* MovieModel.swift in Sources */,
+				9BBDDDFA242B5D8400D810AD /* HomeViewController.swift in Sources */,
+				9BBDDE01242B5E3700D810AD /* HomePresenterProtocol.swift in Sources */,
+				9BBDDE0C242B68D700D810AD /* HomeInteractor.swift in Sources */,
+				9BBDDDF5242B5D5300D810AD /* APIManager.swift in Sources */,
+				9BBDDDF7242B5D5E00D810AD /* JSONManager.swift in Sources */,
+				9BBDDDFC242B5DA100D810AD /* HomePresenter.swift in Sources */,
 				2AE55571242B19FF008A6D81 /* ViewController.swift in Sources */,
+				9BBDDE0E242B68F000D810AD /* HomeInteractorProtocol.swift in Sources */,
+				9BBDDDFE242B5DEF00D810AD /* HomeViewControllerProtocol.swift in Sources */,
 				2AE5556D242B19FF008A6D81 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,6 +368,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */,
+				9BBDDE04242B604000D810AD /* HomeViewControllerTests.swift in Sources */,
+				9BBDDE08242B659000D810AD /* HomePresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
