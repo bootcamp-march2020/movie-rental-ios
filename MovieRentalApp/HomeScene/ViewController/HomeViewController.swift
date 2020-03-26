@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController, HomeViewControllerProtocol {
     
     lazy var presenter: HomePresenterProtocol = HomePresenter()
+    lazy var cartManager: CartManagerProtocol = CartPresenter()
     
     private let kCellId = "cellId"
     
@@ -56,7 +57,7 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     
     private (set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 20
         layout.minimumInteritemSpacing = 10
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -70,6 +71,10 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     private func setupViews() {
         view.addSubview(placeholderLabel)
         view.addSubview(collectionView)
+    }
+    
+    @objc func openCart() {
+        
     }
     
     private func setupConstraints() {
@@ -93,7 +98,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCellId, for: indexPath) as! MovieCell
-        cell.updateCell(movie: movies[indexPath.row])
+        cell.updateCell(movie: movies[indexPath.row], cartManager: self.cartManager)
         return cell
     }
     

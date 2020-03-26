@@ -8,9 +8,13 @@
 
 import Foundation
 
-struct MovieModel {
+struct MovieModel: Equatable {
     let id: String
     let name: String
     let posterUrlString: String
     let ratings: String
+    
+    static func ==(lhs: MovieModel, rhs: MovieModel) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

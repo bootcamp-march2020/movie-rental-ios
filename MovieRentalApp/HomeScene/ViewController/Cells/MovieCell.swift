@@ -10,10 +10,13 @@ import UIKit
 
 class MovieCell: UICollectionViewCell {
     
+    weak var cartManagerDelegate: CartManagerProtocol!
+    private var movie: MovieModel!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-      //  layer.cornerRadius = 10
+        backgroundColor = UIColor.init(white: 0.96, alpha: 1)
+        layer.cornerRadius = 10
         layer.masksToBounds = true
         
         self.setUpView()
@@ -24,27 +27,29 @@ class MovieCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func updateCell(movie: MovieModel) {
+    public func updateCell(movie: MovieModel, cartManager: CartManagerProtocol) {
+        self.movie = movie
+        self.cartManagerDelegate = cartManager
         self.movieTitleLabel.text = movie.name
         self.ratingLabel.text = movie.ratings
         self.moviePoster.loadImageUsingURLString(movie.posterUrlString)
+        updateAddToCartButton()
     }
     
     lazy var moviePoster: AsyncImageView = {
         let imageView = AsyncImageView.init()
-        imageView.contentMode = .scaleToFill
-        imageView.backgroundColor = UIColor.gray
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.image = UIImage.init(named: "poster")
-       // imageView.layer.cornerRadius = 10
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     lazy var addToCartButton: UIButton = {
-        let button = UIButton.init(type: UIButton.ButtonType.roundedRect)
+        let button = UIButton.init(type: UIButton.ButtonType.custom)
+        button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.7)
-        button.setTitle(" Remove ", for: UIControl.State.normal)
+        button.addTarget(self, action: #selector(addToCart), for: UIControl.Event.touchUpInside)
         button.setTitleColor(UIColor.black, for: UIControl.State.normal)
         button.setContentHuggingPriority(UILayoutPriority.init(750), for: NSLayoutConstraint.Axis.horizontal)
         button.layer.cornerRadius = 5
@@ -74,32 +79,34 @@ class MovieCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var priceLabel: UILabel = {
-        let label = UILabel.init()
-        label.textAlignment = .left
-        label.textColor = UIColor.gray
-        label.lineBreakMode = .byTruncatingTail
-        label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Price"
-        return label
-    }()
+    @objc func addToCart() {
+        if self.movie != nil, (cartManagerDelegate?.moviesInCart.contains(self.movie)) == true {
+            cartManagerDelegate.removeMovie(movie: movie)
+        } else if movie != nil {
+            cartManagerDelegate?.addMovie(movie: movie)
+        }
+        updateAddToCartButton()
+    }
     
-    lazy var verticalStackView: UIStackView = {
-        let stackView = UIStackView.init()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = 3
-        return stackView
-    }()
+    func updateAddToCartButton() {
+
+        if self.movie != nil, (cartManagerDelegate?.moviesInCart.contains(self.movie)) == true {
+            let attrStr = NSMutableAttributedString.init(string: " Remove ")
+            attrStr.addAttributes([NSAttributedString.Key.backgroundColor : UIColor.systemRed.withAlphaComponent(0.75), NSAttributedString.Key.font : UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)], range: NSRange.init(location: 0, length: attrStr.length))
+            addToCartButton.setAttributedTitle(attrStr, for: UIControl.State.normal)
+        } else {
+            let attrStr = NSMutableAttributedString.init(string: " Add ")
+            attrStr.addAttributes([NSAttributedString.Key.backgroundColor : UIColor.systemGreen.withAlphaComponent(0.6), NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: UIFont.Weight.medium)], range: NSRange.init(location: 0, length: attrStr.length))
+            addToCartButton.setAttributedTitle(attrStr, for: UIControl.State.normal)
+        }
+    }
     
     private func setUpView() {
         addSubview(moviePoster)
-        addSubview(verticalStackView)
         addSubview(addToCartButton)
-        verticalStackView.addArrangedSubview(movieTitleLabel)
-        verticalStackView.addArrangedSubview(ratingLabel)
-       // verticalStackView.addArrangedSubview(priceLabel)
+        addSubview(movieTitleLabel)
+        addSubview(ratingLabel)
+        updateAddToCartButton()
     }
     
     private func setUpContraints() {
@@ -107,33 +114,21 @@ class MovieCell: UICollectionViewCell {
         moviePoster.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         moviePoster.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
         moviePoster.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        moviePoster.heightAnchor.constraint(equalToConstant: 220).isActive = true
         
-        addToCartButton.leadingAnchor.constraint(equalTo: self.verticalStackView.trailingAnchor, constant: 10).isActive = true
+        addToCartButton.leadingAnchor.constraint(equalTo: self.ratingLabel.trailingAnchor, constant: 10).isActive = true
         addToCartButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         addToCartButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        addToCartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-        
-        verticalStackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-        verticalStackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-        verticalStackView.trailingAnchor.constraint(equalTo: self.addToCartButton.leadingAnchor, constant: -10).isActive = true
-        verticalStackView.topAnchor.constraint(equalTo: self.moviePoster.bottomAnchor, constant: 10).isActive = true
-        
-//        movieTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-//        movieTitleLabel.topAnchor.constraint(equalTo: self.moviePoster.bottomAnchor, constant: 10).isActive = true
-//        movieTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-//        movieTitleLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//
-//        ratingLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-//        ratingLabel.topAnchor.constraint(equalTo: self.movieTitleLabel.bottomAnchor, constant: 10).isActive = true
-//        ratingLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-//        ratingLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//
-//        priceLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-//        priceLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-//        priceLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-//        priceLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-//        priceLabel.topAnchor.constraint(equalTo: self.ratingLabel.bottomAnchor, constant: 5).isActive = true
+        addToCartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
+                
+        movieTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        movieTitleLabel.topAnchor.constraint(equalTo: self.moviePoster.bottomAnchor, constant: 5).isActive = true
+        movieTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+        movieTitleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+
+        ratingLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        ratingLabel.topAnchor.constraint(equalTo: self.movieTitleLabel.bottomAnchor, constant: 5).isActive = true
+        ratingLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        ratingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
         
     }
     

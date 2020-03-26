@@ -13,6 +13,10 @@
 		2AE55576242B1A00008A6D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55575242B1A00008A6D81 /* Assets.xcassets */; };
 		2AE55579242B1A00008A6D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55577242B1A00008A6D81 /* LaunchScreen.storyboard */; };
 		2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */; };
+		2AE555A4242B884B008A6D81 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A3242B884B008A6D81 /* AsyncImageView.swift */; };
+		2AE555A6242CB4B3008A6D81 /* CartManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A5242CB4B3008A6D81 /* CartManagerProtocol.swift */; };
+		2AE555A8242CB56C008A6D81 /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A7242CB56C008A6D81 /* CartPresenter.swift */; };
+		2AE555AB242CB64C008A6D81 /* CartPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555AA242CB64C008A6D81 /* CartPresenterTest.swift */; };
 		9BBDDDF5242B5D5300D810AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF4242B5D5300D810AD /* APIManager.swift */; };
 		9BBDDDF7242B5D5E00D810AD /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */; };
 		9BBDDDFA242B5D8400D810AD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */; };
@@ -34,7 +38,7 @@
 		9BDC1972242CC41B009908D8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDC1971242CC41B009908D8 /* LoginViewController.swift */; };
 		9BDC1973242CC446009908D8 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A1242B7643008A6D81 /* MovieCell.swift */; };
 		9BDC1974242CC451009908D8 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A3242B884B008A6D81 /* AsyncImageView.swift */; };
-		B69C9B339F65A9AB99FA7BE1 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		B69C9B339F65A9AB99FA7BE1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		DBD358DB092EA292299AF308 /* Pods_MovieRentalAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13E10B5DE95D367E5C5E654 /* Pods_MovieRentalAppTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,10 +63,11 @@
 		2AE5557F242B1A00008A6D81 /* MovieRentalAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieRentalAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRentalAppTests.swift; sourceTree = "<group>"; };
 		2AE55585242B1A01008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AE5558E242B1A01008A6D81 /* MovieRentalAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRentalAppUITests.swift; sourceTree = "<group>"; };
-		2AE55590242B1A01008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE555A1242B7643008A6D81 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		2AE555A3242B884B008A6D81 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
+		2AE555A5242CB4B3008A6D81 /* CartManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManagerProtocol.swift; sourceTree = "<group>"; };
+		2AE555A7242CB56C008A6D81 /* CartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenter.swift; sourceTree = "<group>"; };
+		2AE555AA242CB64C008A6D81 /* CartPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenterTest.swift; sourceTree = "<group>"; };
 		9BBDDDF4242B5D5300D810AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B69C9B339F65A9AB99FA7BE1 /* BuildFile in Frameworks */,
+				B69C9B339F65A9AB99FA7BE1 /* (null) in Frameworks */,
 				DBD358DB092EA292299AF308 /* Pods_MovieRentalAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,7 +133,6 @@
 			children = (
 				2AE5556B242B19FF008A6D81 /* MovieRentalApp */,
 				2AE55582242B1A00008A6D81 /* MovieRentalAppTests */,
-				2AE5558D242B1A01008A6D81 /* MovieRentalAppUITests */,
 				2AE5556A242B19FF008A6D81 /* Products */,
 				0EF1DC4F8CD68A23DFF1CD13 /* Pods */,
 				CE4535C8AB267233F6CA5C5B /* Frameworks */,
@@ -167,20 +171,12 @@
 		2AE55582242B1A00008A6D81 /* MovieRentalAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				2AE555A9242CB636008A6D81 /* CartTests */,
 				9BBDDE02242B600600D810AD /* HomeSceneTests */,
 				2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */,
 				2AE55585242B1A01008A6D81 /* Info.plist */,
 			);
 			path = MovieRentalAppTests;
-			sourceTree = "<group>";
-		};
-		2AE5558D242B1A01008A6D81 /* MovieRentalAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				2AE5558E242B1A01008A6D81 /* MovieRentalAppUITests.swift */,
-				2AE55590242B1A01008A6D81 /* Info.plist */,
-			);
-			path = MovieRentalAppUITests;
 			sourceTree = "<group>";
 		};
 		2AE555A0242B7627008A6D81 /* Cells */ = {
@@ -189,6 +185,14 @@
 				2AE555A1242B7643008A6D81 /* MovieCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		2AE555A9242CB636008A6D81 /* CartTests */ = {
+			isa = PBXGroup;
+			children = (
+				2AE555AA242CB64C008A6D81 /* CartPresenterTest.swift */,
+			);
+			path = CartTests;
 			sourceTree = "<group>";
 		};
 		9BBDDDF0242B5D2500D810AD /* HomeScene */ = {
@@ -215,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				9BBDDDFB242B5DA100D810AD /* HomePresenter.swift */,
+				2AE555A7242CB56C008A6D81 /* CartPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -243,6 +248,7 @@
 				9BBDDDFD242B5DEF00D810AD /* HomeViewControllerProtocol.swift */,
 				9BBDDE00242B5E3700D810AD /* HomePresenterProtocol.swift */,
 				9BBDDE0D242B68F000D810AD /* HomeInteractorProtocol.swift */,
+				2AE555A5242CB4B3008A6D81 /* CartManagerProtocol.swift */,
 			);
 			name = Contracts;
 			sourceTree = "<group>";
@@ -497,11 +503,14 @@
 				9BBDDDF7242B5D5E00D810AD /* JSONManager.swift in Sources */,
 				9BDC196B242CC3D6009908D8 /* UserProfileController.swift in Sources */,
 				9BDC1967242CC399009908D8 /* SessionUtils.swift in Sources */,
+				2AE555A6242CB4B3008A6D81 /* CartManagerProtocol.swift in Sources */,
 				9BBDDDFC242B5DA100D810AD /* HomePresenter.swift in Sources */,
 				9BDC196C242CC3E1009908D8 /* Extensions.swift in Sources */,
 				2AE55571242B19FF008A6D81 /* ViewController.swift in Sources */,
 				9BDC1973242CC446009908D8 /* MovieCell.swift in Sources */,
 				9BBDDE0E242B68F000D810AD /* HomeInteractorProtocol.swift in Sources */,
+				2AE555A8242CB56C008A6D81 /* CartPresenter.swift in Sources */,
+				2AE555A4242B884B008A6D81 /* AsyncImageView.swift in Sources */,
 				9BBDDDFE242B5DEF00D810AD /* HomeViewControllerProtocol.swift in Sources */,
 				2AE5556D242B19FF008A6D81 /* AppDelegate.swift in Sources */,
 				9BDC196D242CC3E5009908D8 /* ViewUtils.swift in Sources */,
@@ -513,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BDC1966242CB59E009908D8 /* APIManagerTests.swift in Sources */,
+				2AE555AB242CB64C008A6D81 /* CartPresenterTest.swift in Sources */,
 				2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */,
 				9BBDDE04242B604000D810AD /* HomeViewControllerTests.swift in Sources */,
 				9BBDDE08242B659000D810AD /* HomePresenterTests.swift in Sources */,

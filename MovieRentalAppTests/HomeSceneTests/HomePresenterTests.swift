@@ -13,16 +13,25 @@ import XCTest
 
 class HomePresenterTests: XCTestCase {
     
-    var presenter: HomePresenterProtocol!
+    let presenter = HomePresenter()
+    let homeViewController = HomeViewController()
     
     override func setUp() {
         super.setUp()
-        presenter = HomePresenter()
+        homeViewController.presenter = presenter
+        presenter.viewController = homeViewController
+        presenter.interactor = HomeInteractorMock()
     }
     
     func testManageViewLoader() {
         presenter.manageViewLoaded()
-        
     }
     
+}
+
+
+class HomeInteractorMock: HomeInteractorProtocol {
+    func getMovieList(completion: @escaping (Result<[MovieModel], Error>) -> ()) {
+        completion(.success(MovieModel.dummies(number: 1)))
+    }
 }
