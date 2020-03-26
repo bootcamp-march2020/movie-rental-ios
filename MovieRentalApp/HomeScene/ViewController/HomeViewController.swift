@@ -32,10 +32,8 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     private (set) var movies: [MovieModel] = []
     
     func populateMovies(_ movies: [MovieModel]) {
-        DispatchQueue.main.async {
-            self.movies = movies
-            self.collectionView.reloadData()
-        }
+        self.movies = movies
+        self.collectionView.reloadData()
     }
     
     func showError(_ error: Error) {

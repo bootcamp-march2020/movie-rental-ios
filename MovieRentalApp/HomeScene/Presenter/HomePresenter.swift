@@ -23,7 +23,9 @@ class HomePresenter: HomePresenterProtocol {
             case let .failure(error):
                 print(error)
             case let .success(data):
-                self.viewController?.populateMovies(data)
+                DispatchQueue.main.async {
+                    self.viewController?.populateMovies(data)
+                }
             }
         }
     }
