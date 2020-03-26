@@ -18,9 +18,12 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         super.viewDidLoad()
         
         title = "Home"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         view.backgroundColor = .white
+        
+        if let controller = navigationController as? NavigationController {
+            controller.setupNavigationItems(for: navigationItem)
+        }
         
         setupViews()
         setupConstraints()

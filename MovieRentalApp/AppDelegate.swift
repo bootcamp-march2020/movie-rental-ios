@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,10 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        window = UIWindow.init()
-        window?.rootViewController = UINavigationController(rootViewController: HomeViewController())
+        
+        window = UIWindow()
+        
+        SessionUtils.initialize()
+        RootRouter.shared.initialize(with: window!)
+        
         window?.makeKeyAndVisible()
+        
         return true
     }
 

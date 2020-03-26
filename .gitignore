@@ -9,6 +9,11 @@
 # For updates, see: http://stackoverflow.com/questions/49478/git-ignore-file-for-xcode-projects
 #########################
 
+PodFile.lock
+Pods/
+*.xcworkspace/xcshareddata/
+*.xcworkspacedata
+
 #####
 # OS X temporary files that should never be committed
 
@@ -16,7 +21,6 @@
 *.swp
 *.lock
 profile
-
 
 ####
 # Xcode temporary files that should never be committed
@@ -111,3 +115,4 @@ xcuserdata
 # UNKNOWN: recommended by others, but I can't discover what these files are
 #
 # ...none. Everything is now explained.
+MovieRentalApp.xcworkspace/xcshareddata

@@ -9,21 +9,18 @@
 import Foundation
 
 enum NetworkError: Error {
-    case InvalidURL, DataIsNil
+    case InvalidURL, InvalidUser, DataIsNil
 }
 
 class APIManager {
     
     static let shared = APIManager()
     
-    func makeAPICall(_ url: String, completion: @escaping (Result<Data, Error>)->()) {
-        guard let url = URL.init(string: url) else {
-            completion(.failure(NetworkError.InvalidURL))
-            return
-        }
-        let request = URLRequest.init(url: url)
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-
+    var sessionManager: SessionUtilsProtocol.Type = SessionUtils.self
+    
+    func makeAPICall(with request: URLRequest, completion: @escaping (Result<Data, Error>)->()) {
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -33,9 +30,38 @@ class APIManager {
                 completion(.failure(NetworkError.DataIsNil))
                 return
             }
+            
             completion(.success(data))
+        }.resume()
+    }
+    
+    func makeServerCall(_ url: String, method: String = "GET", completion: @escaping (Result<Data, Error>)->()) {
+        
+        guard let url = URL(string: url) else {
+            completion(.failure(NetworkError.InvalidURL))
+            return
         }
-        task.resume()
+        
+        do {
+            let request = try getServerURLRequest(for: url, method: method)
+            makeAPICall(with: request, completion: completion)
+        }
+        catch {
+            completion(.failure(error))
+        }
+    }
+    
+    func getServerURLRequest(for url: URL, method: String) throws -> URLRequest {
+        guard let idToken = sessionManager.getAccessToken() else { throw NetworkError.InvalidUser }
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.addValue(idToken, forHTTPHeaderField: "id-token")
+        return request
+    }
+    
+    func getMoviesList(completion: @escaping (Result<Data, Error>)->()) {
+        let movieUrl = "https://tw-onlinestore.herokuapp.com/movies"
+        
     }
     
 }

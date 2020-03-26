@@ -25,7 +25,10 @@ class AsyncImageView: UIImageView {
             self.image = imageFromCache
             return
         }
-        APIManager.shared.makeAPICall(url) { (result) in
+        
+        guard let url_ = URL(string: url) else { return }
+        
+        APIManager.shared.makeAPICall(with: URLRequest(url: url_)) { (result) in
             switch result {
             case let .failure(error):
                 print(error)
