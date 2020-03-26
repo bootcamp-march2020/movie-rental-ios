@@ -33,14 +33,9 @@ class APIManager {
                 completion(.failure(NetworkError.DataIsNil))
                 return
             }
-            
             completion(.success(data))
         }
         task.resume()
-    }
-    
-    func getMoviesList(completion: @escaping (Result<Data, Error>)->()) {
-        
     }
     
 }

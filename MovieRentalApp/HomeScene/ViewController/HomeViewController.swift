@@ -24,14 +24,18 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         
         setupViews()
         setupConstraints()
+        (presenter as? HomePresenter)?.viewController = self
+        presenter.manageViewLoaded()
     }
     
     //MARK: ViewController Protocol Methods
     private (set) var movies: [MovieModel] = []
     
     func populateMovies(_ movies: [MovieModel]) {
-        self.movies = movies
-        collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.movies = movies
+            self.collectionView.reloadData()
+        }
     }
     
     func showError(_ error: Error) {
@@ -69,13 +73,12 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
 extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCellId, for: indexPath) as! MovieCell
-     //   cell.updateCell(movie: movies[indexPath.row])
-        cell.backgroundColor = UIColor.lightGray
+        cell.updateCell(movie: movies[indexPath.row])
         return cell
     }
     

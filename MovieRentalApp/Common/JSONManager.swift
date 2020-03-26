@@ -17,12 +17,30 @@ class JSONManager {
     
     static let shared = JSONManager()
     
-    func parseMovies(from data: Data) throws -> [MovieModel] {
-        return []
+    func parseMovies(from data: Data) -> [MovieModel] {
+        var movies: [MovieModel] = []
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: [])
+            if let moviesJson = json as? [Any] {
+                for movieJson in moviesJson {
+                    if let movieDict = movieJson as? [String : Any] {
+                        movies.append(parseMovie(from: movieDict))
+                    }
+                }
+            }
+        } catch {
+            
+        }
+        return movies
     }
     
-    func parseMovie(from dict: [String: Any]) throws -> MovieModel {
-        throw JSONError.ParsingFailed
+    func parseMovie(from dict: [String: Any]) -> MovieModel {
+        let mid = dict["mid"] as? String ?? ""
+        let name = dict["title"] as? String ?? ""
+        let url = dict["posterUrlString"] as? String ?? ""
+        let ratings = "Ratings: \(dict["ratings"] as? Double ?? 0)"
+        let movie = MovieModel.init(id: mid, name: name, posterUrlString: url, ratings: ratings)
+        return movie
     }
     
 }

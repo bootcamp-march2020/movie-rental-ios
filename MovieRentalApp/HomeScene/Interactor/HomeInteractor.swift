@@ -25,7 +25,15 @@ class HomeInteractor: HomeInteractorProtocol {
     
     
     func getMovieList(completion: @escaping (Result<[MovieModel], Error>) -> ()) {
-        
+        let movieUrl = "https://tw-onlinestore.herokuapp.com/movies"
+        apiManager.makeAPICall(movieUrl) { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(data):
+                completion(.success(self.jsonManager.parseMovies(from: data)))
+            }
+        }
     }
     
 }

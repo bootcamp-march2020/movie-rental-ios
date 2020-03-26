@@ -11,15 +11,6 @@ import Foundation
 struct MovieModel {
     let id: String
     let name: String
-    let year: Int
-    let rated: String
     let posterUrlString: String
-    let releaseDate: Date
-    let genre: [String]
-    let director: String
-    let actors: [String]
-    let languages: [String]
     let ratings: String
-    let type: String
-    let price: Double
 }

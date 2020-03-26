@@ -14,11 +14,18 @@ class HomePresenter: HomePresenterProtocol {
     lazy var interactor: HomeInteractorProtocol = HomeInteractor()
     
     public func manageViewLoaded() {
-        
+        getMovieList()
     }
     
-    private func getMovieList() -> [MovieModel] {
-        return []
+    private func getMovieList() {
+        interactor.getMovieList { (result) in
+            switch result {
+            case let .failure(error):
+                print(error)
+            case let .success(data):
+                self.viewController?.populateMovies(data)
+            }
+        }
     }
     
 }
