@@ -12,6 +12,10 @@ enum NetworkError: Error {
     case InvalidURL, InvalidUser, DataIsNil
 }
 
+enum ResponseError: Error {
+    
+}
+
 class APIManager {
     
     static let shared = APIManager()
@@ -60,8 +64,8 @@ class APIManager {
     }
     
     func getMoviesList(completion: @escaping (Result<Data, Error>)->()) {
-        let movieUrl = "https://tw-onlinestore.herokuapp.com/movies"
-        
+        let movieUrl = "https://tw-onlinestore.herokuapp.com/api/movies"
+        makeServerCall(movieUrl, completion: completion)
     }
     
 }

@@ -13,7 +13,6 @@
 		2AE55576242B1A00008A6D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55575242B1A00008A6D81 /* Assets.xcassets */; };
 		2AE55579242B1A00008A6D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55577242B1A00008A6D81 /* LaunchScreen.storyboard */; };
 		2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */; };
-		2AE5558F242B1A01008A6D81 /* MovieRentalAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5558E242B1A01008A6D81 /* MovieRentalAppUITests.swift */; };
 		9BBDDDF5242B5D5300D810AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF4242B5D5300D810AD /* APIManager.swift */; };
 		9BBDDDF7242B5D5E00D810AD /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */; };
 		9BBDDDFA242B5D8400D810AD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */; };
@@ -35,19 +34,11 @@
 		9BDC1972242CC41B009908D8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDC1971242CC41B009908D8 /* LoginViewController.swift */; };
 		9BDC1973242CC446009908D8 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A1242B7643008A6D81 /* MovieCell.swift */; };
 		9BDC1974242CC451009908D8 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A3242B884B008A6D81 /* AsyncImageView.swift */; };
-		B1677D900D2D6AB91B2BDC45 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		B69C9B339F65A9AB99FA7BE1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		2AE55580242B1A00008A6D81 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2AE55561242B19FF008A6D81 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2AE55568242B19FF008A6D81;
-			remoteInfo = MovieRentalApp;
-		};
-		2AE5558B242B1A01008A6D81 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2AE55561242B19FF008A6D81 /* Project object */;
 			proxyType = 1;
@@ -67,7 +58,6 @@
 		2AE5557F242B1A00008A6D81 /* MovieRentalAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieRentalAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRentalAppTests.swift; sourceTree = "<group>"; };
 		2AE55585242B1A01008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AE5558A242B1A01008A6D81 /* MovieRentalAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieRentalAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE5558E242B1A01008A6D81 /* MovieRentalAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRentalAppUITests.swift; sourceTree = "<group>"; };
 		2AE55590242B1A01008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE555A1242B7643008A6D81 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
@@ -113,14 +103,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2AE55587242B1A01008A6D81 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B1677D900D2D6AB91B2BDC45 /* (null) in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -151,7 +133,6 @@
 			children = (
 				2AE55569242B19FF008A6D81 /* MovieRentalApp.app */,
 				2AE5557F242B1A00008A6D81 /* MovieRentalAppTests.xctest */,
-				2AE5558A242B1A01008A6D81 /* MovieRentalAppUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -353,27 +334,6 @@
 			productReference = 2AE5557F242B1A00008A6D81 /* MovieRentalAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		2AE55589242B1A01008A6D81 /* MovieRentalAppUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2AE55599242B1A01008A6D81 /* Build configuration list for PBXNativeTarget "MovieRentalAppUITests" */;
-			buildPhases = (
-				AC644DE7B103BA3D6CE0DCE8 /* [CP] Check Pods Manifest.lock */,
-				2AE55586242B1A01008A6D81 /* Sources */,
-				2AE55587242B1A01008A6D81 /* Frameworks */,
-				2AE55588242B1A01008A6D81 /* Resources */,
-				9F5B6C5AA8075AF3A0A93C8B /* [CP] Embed Pods Frameworks */,
-				D61AAFE754D69B26F9886779 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2AE5558C242B1A01008A6D81 /* PBXTargetDependency */,
-			);
-			name = MovieRentalAppUITests;
-			productName = MovieRentalAppUITests;
-			productReference = 2AE5558A242B1A01008A6D81 /* MovieRentalAppUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -388,10 +348,6 @@
 						CreatedOnToolsVersion = 11.3.1;
 					};
 					2AE5557E242B1A00008A6D81 = {
-						CreatedOnToolsVersion = 11.3.1;
-						TestTargetID = 2AE55568242B19FF008A6D81;
-					};
-					2AE55589242B1A01008A6D81 = {
 						CreatedOnToolsVersion = 11.3.1;
 						TestTargetID = 2AE55568242B19FF008A6D81;
 					};
@@ -412,7 +368,6 @@
 			targets = (
 				2AE55568242B19FF008A6D81 /* MovieRentalApp */,
 				2AE5557E242B1A00008A6D81 /* MovieRentalAppTests */,
-				2AE55589242B1A01008A6D81 /* MovieRentalAppUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -428,13 +383,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		2AE5557D242B1A00008A6D81 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2AE55588242B1A01008A6D81 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -522,62 +470,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9F5B6C5AA8075AF3A0A93C8B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MovieRentalApp-MovieRentalAppUITests/Pods-MovieRentalApp-MovieRentalAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MovieRentalApp-MovieRentalAppUITests/Pods-MovieRentalApp-MovieRentalAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieRentalApp-MovieRentalAppUITests/Pods-MovieRentalApp-MovieRentalAppUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		AC644DE7B103BA3D6CE0DCE8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MovieRentalApp-MovieRentalAppUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D61AAFE754D69B26F9886779 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MovieRentalApp-MovieRentalAppUITests/Pods-MovieRentalApp-MovieRentalAppUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MovieRentalApp-MovieRentalAppUITests/Pods-MovieRentalApp-MovieRentalAppUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MovieRentalApp-MovieRentalAppUITests/Pods-MovieRentalApp-MovieRentalAppUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -619,14 +511,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2AE55586242B1A01008A6D81 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2AE5558F242B1A01008A6D81 /* MovieRentalAppUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -634,11 +518,6 @@
 			isa = PBXTargetDependency;
 			target = 2AE55568242B19FF008A6D81 /* MovieRentalApp */;
 			targetProxy = 2AE55580242B1A00008A6D81 /* PBXContainerItemProxy */;
-		};
-		2AE5558C242B1A01008A6D81 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2AE55568242B19FF008A6D81 /* MovieRentalApp */;
-			targetProxy = 2AE5558B242B1A01008A6D81 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -856,51 +735,6 @@
 			};
 			name = Release;
 		};
-		2AE5559A242B1A01008A6D81 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = MovieRentalAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thoughtworks.demo.MovieRentalAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MovieRentalApp;
-			};
-			name = Debug;
-		};
-		2AE5559B242B1A01008A6D81 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = C3CE581B917F8D7F22947847 /* Pods-MovieRentalApp-MovieRentalAppUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = MovieRentalAppUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.thoughtworks.demo.MovieRentalAppUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = MovieRentalApp;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -927,15 +761,6 @@
 			buildConfigurations = (
 				2AE55597242B1A01008A6D81 /* Debug */,
 				2AE55598242B1A01008A6D81 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2AE55599242B1A01008A6D81 /* Build configuration list for PBXNativeTarget "MovieRentalAppUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2AE5559A242B1A01008A6D81 /* Debug */,
-				2AE5559B242B1A01008A6D81 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

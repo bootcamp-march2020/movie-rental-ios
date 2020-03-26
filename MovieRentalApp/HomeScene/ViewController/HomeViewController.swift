@@ -37,13 +37,23 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     func populateMovies(_ movies: [MovieModel]) {
         self.movies = movies
         self.collectionView.reloadData()
+        self.collectionView.isHidden = false
     }
     
     func showError(_ error: Error) {
-        
+        collectionView.isHidden = true
+        placeholderLabel.text = error.localizedDescription
     }
     
     //MARK: Views and Constraints
+    private (set) lazy var placeholderLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.numberOfLines = 0
+        view.textColor = .red
+        return view
+    }()
+    
     private (set) lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
@@ -58,10 +68,14 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     }()
     
     private func setupViews() {
+        view.addSubview(placeholderLabel)
         view.addSubview(collectionView)
     }
     
     private func setupConstraints() {
+        placeholderLabel.fillSuperViewWidth(padding: 24)
+        placeholderLabel.alignCenter()
+        
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
         collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true

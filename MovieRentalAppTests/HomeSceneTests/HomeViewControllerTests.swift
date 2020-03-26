@@ -34,6 +34,13 @@ class HomeViewControllerTests: XCTestCase {
         XCTAssertEqual(viewController.collectionView.numberOfItems(inSection: 0), movies.count)
     }
     
+    func testPopulateMoviesShouldUpdateVisibility() {
+        viewController.collectionView.isHidden = true
+        let movies: [MovieModel] = MovieModel.dummies(number: 30)
+        viewController.populateMovies(movies)
+        XCTAssertFalse(viewController.collectionView.isHidden)
+    }
+    
     func testPopulateMoviesForEmptyCase() {
         
     }

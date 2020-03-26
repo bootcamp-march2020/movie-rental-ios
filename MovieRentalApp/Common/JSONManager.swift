@@ -9,7 +9,7 @@
 import Foundation
 
 enum JSONError: Error {
-    case ParsingFailed
+    case ParsingFailed, ResponseFormatError
 }
 
 
@@ -17,21 +17,14 @@ class JSONManager {
     
     static let shared = JSONManager()
     
-    func parseMovies(from data: Data) -> [MovieModel] {
-        var movies: [MovieModel] = []
-        do {
-            let json = try JSONSerialization.jsonObject(with: data, options: [])
-            if let moviesJson = json as? [Any] {
-                for movieJson in moviesJson {
-                    if let movieDict = movieJson as? [String : Any] {
-                        movies.append(parseMovie(from: movieDict))
-                    }
-                }
-            }
-        } catch {
-            
-        }
-        return movies
+    func convertToJSONObject(from data: Data) throws -> Any {
+        return try JSONSerialization.jsonObject(with: data, options: [])
+    }
+    
+    func parseMovies(from data: Data) throws -> [MovieModel] {
+        let obj = try convertToJSONObject(from: data)
+        guard let json = obj as? [[String: Any]] else { throw JSONError.ResponseFormatError }
+        return json.map { parseMovie(from: $0) }
     }
     
     func parseMovie(from dict: [String: Any]) -> MovieModel {

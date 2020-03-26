@@ -19,11 +19,11 @@ class HomePresenter: HomePresenterProtocol {
     
     private func getMovieList() {
         interactor.getMovieList { (result) in
-            switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(data):
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                switch result {
+                case let .failure(error):
+                    self.viewController?.showError(error)
+                case let .success(data):
                     self.viewController?.populateMovies(data)
                 }
             }
