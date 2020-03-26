@@ -13,8 +13,5 @@ target 'MovieRentalApp' do
     # Pods for testing
   end
 
-  target 'MovieRentalAppUITests' do
-    # Pods for testing
-  end
 
 end

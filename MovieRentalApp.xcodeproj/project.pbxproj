@@ -34,7 +34,8 @@
 		9BDC1972242CC41B009908D8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDC1971242CC41B009908D8 /* LoginViewController.swift */; };
 		9BDC1973242CC446009908D8 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A1242B7643008A6D81 /* MovieCell.swift */; };
 		9BDC1974242CC451009908D8 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A3242B884B008A6D81 /* AsyncImageView.swift */; };
-		B69C9B339F65A9AB99FA7BE1 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		B69C9B339F65A9AB99FA7BE1 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; };
+		DBD358DB092EA292299AF308 /* Pods_MovieRentalAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B13E10B5DE95D367E5C5E654 /* Pods_MovieRentalAppTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,8 +83,11 @@
 		9BDC1968242CC3C0009908D8 /* RootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		9BDC1971242CC41B009908D8 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A7C04E8F314E07FEFA8E7FF9 /* Pods-MovieRentalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieRentalApp.debug.xcconfig"; path = "Target Support Files/Pods-MovieRentalApp/Pods-MovieRentalApp.debug.xcconfig"; sourceTree = "<group>"; };
+		B13E10B5DE95D367E5C5E654 /* Pods_MovieRentalAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieRentalAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBA6C4CA3A9CD64BEA5F7C26 /* Pods-MovieRentalApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieRentalApp.release.xcconfig"; path = "Target Support Files/Pods-MovieRentalApp/Pods-MovieRentalApp.release.xcconfig"; sourceTree = "<group>"; };
 		BFE9C2220878316DA84AF510 /* Pods_MovieRentalApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieRentalApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3CE581B917F8D7F22947847 /* Pods-MovieRentalApp-MovieRentalAppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieRentalApp-MovieRentalAppUITests.release.xcconfig"; path = "Target Support Files/Pods-MovieRentalApp-MovieRentalAppUITests/Pods-MovieRentalApp-MovieRentalAppUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D1B6384F158B4794FE5E610B /* Pods-MovieRentalAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieRentalAppTests.release.xcconfig"; path = "Target Support Files/Pods-MovieRentalAppTests/Pods-MovieRentalAppTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +103,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B69C9B339F65A9AB99FA7BE1 /* (null) in Frameworks */,
+				B69C9B339F65A9AB99FA7BE1 /* BuildFile in Frameworks */,
+				DBD358DB092EA292299AF308 /* Pods_MovieRentalAppTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,8 @@
 				A7C04E8F314E07FEFA8E7FF9 /* Pods-MovieRentalApp.debug.xcconfig */,
 				C3CE581B917F8D7F22947847 /* Pods-MovieRentalApp-MovieRentalAppUITests.release.xcconfig */,
 				08FA8965242E01BBE075543B /* Pods-MovieRentalAppTests.debug.xcconfig */,
+				BBA6C4CA3A9CD64BEA5F7C26 /* Pods-MovieRentalApp.release.xcconfig */,
+				D1B6384F158B4794FE5E610B /* Pods-MovieRentalAppTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -288,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				BFE9C2220878316DA84AF510 /* Pods_MovieRentalApp.framework */,
+				B13E10B5DE95D367E5C5E654 /* Pods_MovieRentalAppTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -669,6 +677,7 @@
 		};
 		2AE55595242B1A01008A6D81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBA6C4CA3A9CD64BEA5F7C26 /* Pods-MovieRentalApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -713,6 +722,7 @@
 		};
 		2AE55598242B1A01008A6D81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1B6384F158B4794FE5E610B /* Pods-MovieRentalAppTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
