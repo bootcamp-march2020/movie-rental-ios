@@ -63,6 +63,7 @@ class CartViewController: UIViewController {
         view.backgroundColor = .systemBlue
         view.setTitleColor(.white, for: .normal)
         view.setTitle("Checkout", for: .normal)
+        view.addTarget(self, action: #selector(checkoutCart), for: UIControl.Event.touchUpInside)
         view.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
         view.layer.cornerRadius = 19
         view.layer.masksToBounds = true
@@ -76,6 +77,11 @@ class CartViewController: UIViewController {
     
     private func setupConstraints() {
         tableView.fillSuperView()
+    }
+    
+    @objc func checkoutCart() {
+        let checkoutController = CheckoutViewController.init()
+        self.navigationController?.pushViewController(checkoutController, animated: true)
     }
     
 }

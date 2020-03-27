@@ -29,6 +29,18 @@ class CartItemCell: UITableViewCell {
         rentalValueLabel.text = "\(CONFIG.DEFAULT_RENTAL_DAYS)"
     }
     
+    func setMovieInCheckOut(checkOutMovieModel: CheckoutMovie) {
+        stepper.isHidden = true
+        rentalValueLabel.isHidden = false
+        movieImageView.loadImageUsingURLString(checkOutMovieModel.posterUrl)
+        movieTitleLabel.text = checkOutMovieModel.movieName
+        pricingTypeLabel.text = checkOutMovieModel.pricingType
+        pricingLabel.text = checkOutMovieModel.initialCostString  +
+            " " + checkOutMovieModel.additionalCostString
+        rentalValueLabel.text = "\(CONFIG.DEFAULT_RENTAL_DAYS)  \(checkOutMovieModel.numberOfDays)"
+        rentalValueLabel.text = "\(checkOutMovieModel.cost)"
+    }
+    
     @objc private func handleStepperValueChange() {
         rentalValueLabel.text = "\(Int(stepper.value))"
     }
