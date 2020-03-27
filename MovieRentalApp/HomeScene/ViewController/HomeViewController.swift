@@ -43,7 +43,7 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     
     func showError(_ error: Error) {
         collectionView.isHidden = true
-        placeholderLabel.text = error.localizedDescription
+        placeholderLabel.text = String(describing: error)
     }
     
     //MARK: Views and Constraints
@@ -52,6 +52,7 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
         view.textColor = .red
+        view.textAlignment = .center
         return view
     }()
     

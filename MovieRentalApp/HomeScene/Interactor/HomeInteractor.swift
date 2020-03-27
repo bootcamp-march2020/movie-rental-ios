@@ -27,9 +27,9 @@ class HomeInteractor: HomeInteractorProtocol {
     func getMovieList(completion: @escaping (Result<[MovieModel], Error>) -> ()) {
         apiManager.getMoviesList { result in
             switch result {
-            case let .success(data):
+            case let .success(json):
                 do {
-                    let movies = try self.jsonManager.parseMovies(from: data)
+                    let movies = try self.jsonManager.parseMovies(from: json)
                     completion(.success(movies))
                 }
                 catch {

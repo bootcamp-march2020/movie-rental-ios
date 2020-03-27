@@ -19,7 +19,9 @@ class APIManagerTests: XCTestCase {
     }
     
     func testMakeServerCallWithInvalidURL() {
-        let invalidUrlString = "server"
+        let invalidUrlString = ""
+        let asyncExpectation = expectation(description: "Async block executed")
+        
         apiManager.makeServerCall(invalidUrlString) { result in
             switch result {
             case .success(_):
@@ -28,14 +30,19 @@ class APIManagerTests: XCTestCase {
             case let .failure(error):
                 switch error {
                 case NetworkError.InvalidURL: XCTAssertTrue(true)
-                default: XCTAssertFalse(true)
+                default: XCTAssertFalse(true, "Should only throw InvalidURL. Thrown error \(error)")
                 }
             }
+            asyncExpectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 1)
     }
     
     func testMakeServerCallWithInvalidUserSession() {
         apiManager.sessionManager = InvalidSessionUtils.self
+        let asyncExpectation = expectation(description: "Async block executed")
+        
         apiManager.makeServerCall("https://www.google.com/") { result in
             switch result {
             case .success(_):
@@ -44,10 +51,13 @@ class APIManagerTests: XCTestCase {
             case let .failure(error):
                 switch error {
                 case NetworkError.InvalidUser: XCTAssertTrue(true)
-                default: XCTAssertFalse(true)
+                default: XCTAssertFalse(true, "Should only throw InvalidUser. Thrown error \(error)")
                 }
             }
+            asyncExpectation.fulfill()
         }
+        
+        waitForExpectations(timeout: 1)
     }
     
     func testGetServerURLRequestWithDummySession() {

@@ -17,12 +17,7 @@ class JSONManager {
     
     static let shared = JSONManager()
     
-    func convertToJSONObject(from data: Data) throws -> Any {
-        return try JSONSerialization.jsonObject(with: data, options: [])
-    }
-    
-    func parseMovies(from data: Data) throws -> [MovieModel] {
-        let obj = try convertToJSONObject(from: data)
+    func parseMovies(from obj: Any) throws -> [MovieModel] {
         guard let json = obj as? [[String: Any]] else { throw JSONError.ResponseFormatError }
         return json.map { parseMovie(from: $0) }
     }
