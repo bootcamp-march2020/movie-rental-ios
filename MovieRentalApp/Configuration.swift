@@ -11,4 +11,8 @@ import Foundation
 enum CONFIG {
     static let CLIENT_ID = "936772320028-u2gh12om9ng67voal1mck32bgvobkcu7.apps.googleusercontent.com"
     static let BASE_URL = "https://tw-onlinestore.herokuapp.com/api"
+    
+    static let MIN_RENTAL_DAYS = 1
+    static let MAX_RENTAL_DAYS = 30
+    static let DEFAULT_RENTAL_DAYS = 7
 }

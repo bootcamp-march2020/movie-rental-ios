@@ -67,12 +67,13 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         view.delegate = self
         view.backgroundColor = .white
         view.register(MovieCell.self, forCellWithReuseIdentifier: kCellId)
+        view.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         return view
     }()
     
     private func setupViews() {
-        view.addSubview(placeholderLabel)
         view.addSubview(collectionView)
+        view.addSubview(placeholderLabel)
     }
     
     @objc func openCart() {
@@ -83,10 +84,10 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         placeholderLabel.fillSuperViewWidth(padding: 24)
         placeholderLabel.alignCenter()
         
-        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10).isActive = true
-        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
 }
@@ -108,7 +109,9 @@ extension HomeViewController: UICollectionViewDataSource {
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = (collectionView.bounds.width / 2) - 5
+        let insets = collectionView.contentInset
+        let contentWidth = collectionView.bounds.width - (insets.left + insets.right)
+        let width = (contentWidth / 2) - 5
         return CGSize.init(width: width, height: width * 1.5)
     }
     

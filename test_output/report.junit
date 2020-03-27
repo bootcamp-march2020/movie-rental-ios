@@ -1,30 +1,28 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<testsuites name='MovieRentalAppTests.xctest' tests='15' failures='1'>
+<testsuites name='MovieRentalAppTests.xctest' tests='15' failures='0'>
   <testsuite name='MovieRentalAppTests.APIManagerTests' tests='3' failures='0'>
-    <testcase classname='MovieRentalAppTests.APIManagerTests' name='testGetServerURLRequestWithDummySession' time='0.004'/>
-    <testcase classname='MovieRentalAppTests.APIManagerTests' name='testMakeServerCallWithInvalidURL' time='0.002'/>
+    <testcase classname='MovieRentalAppTests.APIManagerTests' name='testGetServerURLRequestWithDummySession' time='0.003'/>
+    <testcase classname='MovieRentalAppTests.APIManagerTests' name='testMakeServerCallWithInvalidURL' time='0.001'/>
     <testcase classname='MovieRentalAppTests.APIManagerTests' name='testMakeServerCallWithInvalidUserSession' time='0.001'/>
   </testsuite>
   <testsuite name='MovieRentalAppTests.CartPresenterTest' tests='3' failures='0'>
     <testcase classname='MovieRentalAppTests.CartPresenterTest' name='testAddMovie' time='0.001'/>
-    <testcase classname='MovieRentalAppTests.CartPresenterTest' name='testEmptyMovieList' time='0.001'/>
+    <testcase classname='MovieRentalAppTests.CartPresenterTest' name='testEmptyMovieList' time='0.000'/>
     <testcase classname='MovieRentalAppTests.CartPresenterTest' name='testRemoveMovie' time='0.001'/>
   </testsuite>
   <testsuite name='MovieRentalAppTests.HomePresenterTests' tests='1' failures='0'>
     <testcase classname='MovieRentalAppTests.HomePresenterTests' name='testManageViewLoader' time='0.001'/>
   </testsuite>
-  <testsuite name='MovieRentalAppTests.HomeViewControllerTests' tests='6' failures='1'>
-    <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testMoviesInitiallyEmpty'>
-      <failure message='XCTAssertFalse failed'>MovieRentalAppTests/HomeSceneTests/APIManagerTests.swift:31</failure>
-    </testcase>
-    <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testPopulateMovies' time='0.002'/>
-    <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testPopulateMoviesForEmptyCase' time='0.001'/>
+  <testsuite name='MovieRentalAppTests.HomeViewControllerTests' tests='6' failures='0'>
+    <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testMoviesInitiallyEmpty' time='0.000'/>
+    <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testPopulateMovies' time='0.001'/>
+    <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testPopulateMoviesForEmptyCase' time='0.000'/>
     <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testPopulateMoviesShouldCallReloadData' time='0.001'/>
     <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testPopulateMoviesShouldUpdateVisibility' time='0.001'/>
-    <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testShowError' time='0.001'/>
+    <testcase classname='MovieRentalAppTests.HomeViewControllerTests' name='testShowError' time='0.000'/>
   </testsuite>
   <testsuite name='MovieRentalAppTests.MovieRentalAppTests' tests='2' failures='0'>
-    <testcase classname='MovieRentalAppTests.MovieRentalAppTests' name='testExample' time='0.001'/>
-    <testcase classname='MovieRentalAppTests.MovieRentalAppTests' name='testPerformanceExample' time='0.350'/>
+    <testcase classname='MovieRentalAppTests.MovieRentalAppTests' name='testExample' time='0.000'/>
+    <testcase classname='MovieRentalAppTests.MovieRentalAppTests' name='testPerformanceExample' time='0.318'/>
   </testsuite>
 </testsuites>

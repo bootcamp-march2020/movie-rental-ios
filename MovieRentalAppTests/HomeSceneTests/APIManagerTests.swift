@@ -76,6 +76,44 @@ class APIManagerTests: XCTestCase {
         XCTAssertEqual(setToken, apiManager.sessionManager.getAccessToken())
     }
     
+    func testManageServerResponseWithValidData() {
+        let validString = #"{"statusCode":200,"message":"Success","payload": { }}"#
+        guard let validData = validString.data(using: .utf8) else {
+            assertionFailure("data conversion error")
+            return
+        }
+        let validated = try? apiManager.manageServerResponse(data: validData)
+        XCTAssertNotNil(validated)
+    }
+    
+    func testManageServerResponseWithInValidData() {
+        let string = #"{ }"#
+        guard let data = string.data(using: .utf8) else {
+            assertionFailure("data conversion error")
+            return
+        }
+        XCTAssertThrowsError(try apiManager.manageServerResponse(data: data)) { error in
+            switch error {
+            case ResponseError.UnknownResponseFormat: XCTAssertTrue(true)
+            default: XCTAssertTrue(false)
+            }
+        }
+    }
+    
+    func testManageServerResponseWithInvalidRequestResponseData() {
+        let string = #"{"statusCode":401,"message":"no authorisation token is present","payload":""}"#
+        guard let data = string.data(using: .utf8) else {
+            assertionFailure("data conversion error")
+            return
+        }
+        XCTAssertThrowsError(try apiManager.manageServerResponse(data: data)) { error in
+            switch error {
+            case ResponseError.UnauthorizedRequest: XCTAssertTrue(true)
+            default: XCTAssertTrue(false)
+            }
+        }
+    }
+    
 }
 
 class InvalidSessionUtils: SessionUtilsProtocol {

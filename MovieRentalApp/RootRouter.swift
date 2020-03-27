@@ -61,7 +61,18 @@ class NavigationController: UINavigationController {
     }
     
     @objc private func handleViewCartAction() {
-        print("Cart")
+        let movies = CartManager.shared.moviesInCart
+        guard let controller = CartViewController(movies: movies) else {
+            let alert = UIAlertController(
+                title: "Cart is Empty!",
+                message: "Please add some items in the cart to proceed.",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            present(alert, animated: true)
+            return
+        }
+        present(UINavigationController(rootViewController: controller), animated: true)
     }
     
     private func getImageView(with imageNamed: String, action: Selector, rounded: Bool = false) -> AsyncImageView {
@@ -84,8 +95,6 @@ class NavigationController: UINavigationController {
         cartIconView.translatesAutoresizingMaskIntoConstraints = false
         cartIconView.setConstantWidth(32)
         cartIconView.setConstantHeight(32)
-        view.layer.cornerRadius = 16
-        view.layer.masksToBounds = true
         cartIconView.contentMode = .scaleAspectFit
         cartIconView.isUserInteractionEnabled = true
         cartIconView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleViewCartAction)))
