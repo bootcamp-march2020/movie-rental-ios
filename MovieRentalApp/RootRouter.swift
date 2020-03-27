@@ -53,6 +53,7 @@ class NavigationController: UINavigationController {
     func setupNavigationItems(for item: UINavigationItem) {
         item.leftBarButtonItem = UIBarButtonItem(customView: userImageView)
         item.rightBarButtonItem = UIBarButtonItem(customView: cartImageView)
+        userImageView.loadImage(with: SessionUtils.currentUser.profile.imageURL(withDimension: 32))
     }
     
     @objc private func handleViewProfileAction() {
@@ -63,18 +64,22 @@ class NavigationController: UINavigationController {
         print("Cart")
     }
     
-    private func getImageView(with imageNamed: String, action: Selector) -> UIImageView {
-        let view = UIImageView(image: UIImage(named: imageNamed))
+    private func getImageView(with imageNamed: String, action: Selector, rounded: Bool = false) -> AsyncImageView {
+        let view = AsyncImageView(image: UIImage(named: imageNamed))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setConstantWidth(32)
         view.setConstantHeight(32)
+        if rounded {
+            view.layer.cornerRadius = 16
+            view.layer.masksToBounds = true
+        }
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: action))
         return view
     }
     
-    private (set) lazy var userImageView = getImageView(with: "user", action: #selector(handleViewProfileAction))
+    private (set) lazy var userImageView = getImageView(with: "user", action: #selector(handleViewProfileAction), rounded: true)
     private (set) lazy var cartImageView = getImageView(with: "cart", action: #selector(handleViewCartAction))
     
 }

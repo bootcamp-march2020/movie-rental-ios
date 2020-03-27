@@ -25,7 +25,7 @@ class HomeViewControllerTests: XCTestCase {
     func testPopulateMovies() {
         let movies: [MovieModel] = MovieModel.dummies(number: 30)
         viewController.populateMovies(movies)
-        XCTAssertFalse(viewController.movies.isEmpty)
+        XCTAssertFalse(viewController.movies.isEmpty, "Cannot be empty after population")
     }
     
     func testPopulateMoviesShouldCallReloadData() {

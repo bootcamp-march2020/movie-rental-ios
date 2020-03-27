@@ -14,10 +14,9 @@ let imageCache =  NSCache<AnyObject, AnyObject>()
 
 class AsyncImageView: UIImageView {
     
-    var imageUrl: String?
+    var imageUrl: URL?
     
-    func loadImageUsingURLString(_ url: String) {
-        
+    func loadImage(with url: URL) {
         imageUrl = url
         image = nil
         
@@ -26,22 +25,26 @@ class AsyncImageView: UIImageView {
             return
         }
         
-        guard let url_ = URL(string: url) else { return }
-        
-        APIManager.shared.makeAPICall(with: URLRequest(url: url_)) { (result) in
+        APIManager.shared.makeAPICall(with: URLRequest(url: url)) { (result) in
             switch result {
             case let .failure(error):
                 print(error)
             case let .success(data):
-                DispatchQueue.main.async(execute: {
+                DispatchQueue.main.async {
                     if let imageToCache = UIImage(data: data) {
                         if self.imageUrl == url {
                             self.image =  imageToCache
                         }
                         imageCache.setObject(imageToCache, forKey: url as AnyObject)
                     }
-                })
+                }
             }
         }
+    }
+    
+    func loadImageUsingURLString(_ url: String) {
+        image = nil
+        guard let url_ = URL(string: url) else { return }
+        loadImage(with: url_)
     }
 }

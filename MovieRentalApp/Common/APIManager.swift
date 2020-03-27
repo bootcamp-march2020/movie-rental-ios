@@ -64,7 +64,7 @@ class APIManager {
     }
     
     func getMoviesList(completion: @escaping (Result<Data, Error>)->()) {
-        let movieUrl = "https://tw-onlinestore.herokuapp.com/api/movies"
+        let movieUrl = CONFIG.BASE_URL + "/movies"
         makeServerCall(movieUrl, completion: completion)
     }
     

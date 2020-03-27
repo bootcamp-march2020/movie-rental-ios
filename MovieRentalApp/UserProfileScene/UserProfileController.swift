@@ -23,7 +23,7 @@ class UserProfileController: UIViewController {
     
     private func setupUserDetails() {
         guard let profile = SessionUtils.currentUser.profile else { return }
-        imageView.image = UIImage(named: "user")
+        imageView.loadImage(with: profile.imageURL(withDimension: 150))
         nameLabel.text = profile.name
         emailLabel.text = profile.email
     }
@@ -32,10 +32,11 @@ class UserProfileController: UIViewController {
         SessionUtils.handleSignOut()
     }
     
-    private lazy var imageView: UIImageView = {
-        let view = UIImageView()
+    private lazy var imageView: AsyncImageView = {
+        let view = AsyncImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setDimensions(width: 150, height: 150)
+        view.backgroundColor = UIColor(white: 0.94, alpha: 1)
         view.layer.cornerRadius = 75
         view.layer.masksToBounds = true
         return view
@@ -44,7 +45,7 @@ class UserProfileController: UIViewController {
     private lazy var nameLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.font = .systemFont(ofSize: 17)
+        view.font = .systemFont(ofSize: 20, weight: .bold)
         view.textAlignment = .center
         return view
     }()
@@ -54,6 +55,7 @@ class UserProfileController: UIViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .systemFont(ofSize: 17)
         view.textAlignment = .center
+        view.textColor = .darkGray
         return view
     }()
     
@@ -73,13 +75,13 @@ class UserProfileController: UIViewController {
     
     private func setupConstraints() {
         imageView.alignHorizontallyCenter()
-        imageView.safeTopAnchor(padding: 40)
+        imageView.alignVerticallyCenter(padding: -150)
         
         nameLabel.fillSuperViewWidth(padding: 20)
-        nameLabel.placeBelow(view: imageView, padding: 30)
+        nameLabel.placeBelow(view: imageView, padding: 35)
         
         emailLabel.fillSuperViewWidth(padding: 20)
-        emailLabel.placeBelow(view: nameLabel, padding: 15)
+        emailLabel.placeBelow(view: nameLabel, padding: 12)
         
         signOutButton.alignHorizontallyCenter()
         signOutButton.placeBelow(view: emailLabel, padding: 70)

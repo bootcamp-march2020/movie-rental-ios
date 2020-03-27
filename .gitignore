@@ -9,8 +9,6 @@
 # For updates, see: http://stackoverflow.com/questions/49478/git-ignore-file-for-xcode-projects
 #########################
 
-PodFile.lock
-Pods/
 *.xcworkspace/xcshareddata/
 *.xcworkspacedata
 
