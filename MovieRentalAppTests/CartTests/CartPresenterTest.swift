@@ -11,10 +11,12 @@ import XCTest
 
 class CartPresenterTest: XCTestCase {
     
-    var cartPresenter: CartManagerProtocol!
-
+    var cartManager: CartManagerProtocol!
+    var cartIconView: HomeCartIconView!
     override func setUp() {
-        cartPresenter = CartPresenter.init()
+        cartManager = CartManager()
+        cartIconView = HomeCartIconView()
+        cartManager.valueUpdater = cartIconView
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
 
@@ -23,32 +25,29 @@ class CartPresenterTest: XCTestCase {
     }
     
     func testEmptyMovieList() {
-        XCTAssertEqual(cartPresenter.moviesInCart.count, 0)
+        XCTAssertEqual(cartManager.moviesInCart.count, 0)
     }
 
     func testAddMovie() {
-        let movies = getDummyMovies(moviesCount: 2)
+        let movies = MovieModel.dummies(number: 2)
         for movie in movies {
-            cartPresenter.addMovie(movie: movie)
+            cartManager.addMovie(movie: movie)
         }
-        XCTAssertEqual(cartPresenter.moviesInCart.count, 2)
+        
+        XCTAssertFalse(cartIconView.badgeLabel.isHidden)
+        XCTAssertEqual(cartIconView.badgeLabel.text, " 2 ")
+        XCTAssertEqual(cartManager.moviesInCart.count, 2)
     }
     
     func testRemoveMovie() {
-        let movies = getDummyMovies(moviesCount: 10)
+        let movies = MovieModel.dummies(number: 10)
         for movie in movies {
-            cartPresenter.addMovie(movie: movie)
+            cartManager.addMovie(movie: movie)
         }
-        cartPresenter.removeMovie(movie: movies.last!)
-        XCTAssertEqual(cartPresenter.moviesInCart.count, 9)
-    }
-    
-    private func getDummyMovies(moviesCount: Int) -> [MovieModel] {
-        var movies: [MovieModel] = []
-        for i in 0..<moviesCount {
-            movies.append(MovieModel.init(id: "\(i)", name: "sf", posterUrlString: "sf", ratings: "6.7"))
-        }
-        return movies
+        cartManager.removeMovie(movie: movies.last!)
+        
+        XCTAssertEqual(cartIconView.badgeLabel.text, " 9 ")
+        XCTAssertEqual(cartManager.moviesInCart.count, 9)
     }
 
 }

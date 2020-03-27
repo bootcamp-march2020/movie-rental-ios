@@ -15,8 +15,9 @@
 		2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */; };
 		2AE555A4242B884B008A6D81 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A3242B884B008A6D81 /* AsyncImageView.swift */; };
 		2AE555A6242CB4B3008A6D81 /* CartManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A5242CB4B3008A6D81 /* CartManagerProtocol.swift */; };
-		2AE555A8242CB56C008A6D81 /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A7242CB56C008A6D81 /* CartPresenter.swift */; };
+		2AE555A8242CB56C008A6D81 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A7242CB56C008A6D81 /* CartManager.swift */; };
 		2AE555AB242CB64C008A6D81 /* CartPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555AA242CB64C008A6D81 /* CartPresenterTest.swift */; };
+		2AE555AD242DCCC3008A6D81 /* HomeCartIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555AC242DCCC3008A6D81 /* HomeCartIconView.swift */; };
 		9BBDDDF5242B5D5300D810AD /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF4242B5D5300D810AD /* APIManager.swift */; };
 		9BBDDDF7242B5D5E00D810AD /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */; };
 		9BBDDDFA242B5D8400D810AD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */; };
@@ -66,8 +67,9 @@
 		2AE555A1242B7643008A6D81 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		2AE555A3242B884B008A6D81 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
 		2AE555A5242CB4B3008A6D81 /* CartManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManagerProtocol.swift; sourceTree = "<group>"; };
-		2AE555A7242CB56C008A6D81 /* CartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenter.swift; sourceTree = "<group>"; };
+		2AE555A7242CB56C008A6D81 /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManager.swift; sourceTree = "<group>"; };
 		2AE555AA242CB64C008A6D81 /* CartPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenterTest.swift; sourceTree = "<group>"; };
+		2AE555AC242DCCC3008A6D81 /* HomeCartIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCartIconView.swift; sourceTree = "<group>"; };
 		9BBDDDF4242B5D5300D810AD /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		9BBDDDF6242B5D5E00D810AD /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -195,6 +197,14 @@
 			path = CartTests;
 			sourceTree = "<group>";
 		};
+		2AE555A9242CB636008A6D81 /* CartTests */ = {
+			isa = PBXGroup;
+			children = (
+				2AE555AA242CB64C008A6D81 /* CartPresenterTest.swift */,
+			);
+			path = CartTests;
+			sourceTree = "<group>";
+		};
 		9BBDDDF0242B5D2500D810AD /* HomeScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +221,7 @@
 			children = (
 				2AE555A0242B7627008A6D81 /* Cells */,
 				9BBDDDF9242B5D8400D810AD /* HomeViewController.swift */,
+				2AE555AC242DCCC3008A6D81 /* HomeCartIconView.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -219,7 +230,6 @@
 			isa = PBXGroup;
 			children = (
 				9BBDDDFB242B5DA100D810AD /* HomePresenter.swift */,
-				2AE555A7242CB56C008A6D81 /* CartPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -266,6 +276,7 @@
 		9BBDDE0A242B68AE00D810AD /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				2AE555A7242CB56C008A6D81 /* CartManager.swift */,
 				9BBDDE0B242B68D700D810AD /* HomeInteractor.swift */,
 			);
 			path = Interactor;
@@ -507,9 +518,10 @@
 				9BBDDDFC242B5DA100D810AD /* HomePresenter.swift in Sources */,
 				9BDC196C242CC3E1009908D8 /* Extensions.swift in Sources */,
 				2AE55571242B19FF008A6D81 /* ViewController.swift in Sources */,
+				2AE555AD242DCCC3008A6D81 /* HomeCartIconView.swift in Sources */,
 				9BDC1973242CC446009908D8 /* MovieCell.swift in Sources */,
 				9BBDDE0E242B68F000D810AD /* HomeInteractorProtocol.swift in Sources */,
-				2AE555A8242CB56C008A6D81 /* CartPresenter.swift in Sources */,
+				2AE555A8242CB56C008A6D81 /* CartManager.swift in Sources */,
 				2AE555A4242B884B008A6D81 /* AsyncImageView.swift in Sources */,
 				9BBDDDFE242B5DEF00D810AD /* HomeViewControllerProtocol.swift in Sources */,
 				2AE5556D242B19FF008A6D81 /* AppDelegate.swift in Sources */,

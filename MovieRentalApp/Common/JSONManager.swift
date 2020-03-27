@@ -23,7 +23,7 @@ class JSONManager {
     }
     
     func parseMovie(from dict: [String: Any]) -> MovieModel {
-        let mid = "\(dict["mid"] as? Double ?? 0)"
+        let mid = dict["mid"] as? Int ?? 0
         let name = dict["title"] as? String ?? ""
         let url = dict["posterUrlString"] as? String ?? ""
         let ratings = "Ratings: \(dict["ratings"] as? Double ?? 0)"

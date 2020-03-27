@@ -11,7 +11,7 @@ import UIKit
 class HomeViewController: UIViewController, HomeViewControllerProtocol {
     
     lazy var presenter: HomePresenterProtocol = HomePresenter()
-    lazy var cartManager: CartManagerProtocol = CartPresenter()
+    lazy var cartManager: CartManagerProtocol = CartManager.shared
     
     private let kCellId = "cellId"
     
@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         
         if let controller = navigationController as? NavigationController {
             controller.setupNavigationItems(for: navigationItem)
+            cartManager.valueUpdater = controller.cartImageView
         }
         
         setupViews()

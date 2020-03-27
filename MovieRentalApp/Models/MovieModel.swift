@@ -9,7 +9,7 @@
 import Foundation
 
 struct MovieModel: Equatable {
-    let id: String
+    let id: Int
     let name: String
     let posterUrlString: String
     let ratings: String

@@ -79,7 +79,21 @@ class NavigationController: UINavigationController {
         return view
     }
     
+    private func getCartView() -> HomeCartIconView {
+        let cartIconView = HomeCartIconView.init()
+        cartIconView.translatesAutoresizingMaskIntoConstraints = false
+        cartIconView.setConstantWidth(32)
+        cartIconView.setConstantHeight(32)
+        view.layer.cornerRadius = 16
+        view.layer.masksToBounds = true
+        cartIconView.contentMode = .scaleAspectFit
+        cartIconView.isUserInteractionEnabled = true
+        cartIconView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleViewCartAction)))
+        return cartIconView
+        
+    }
+    
     private (set) lazy var userImageView = getImageView(with: "user", action: #selector(handleViewProfileAction), rounded: true)
-    private (set) lazy var cartImageView = getImageView(with: "cart", action: #selector(handleViewCartAction))
+    private (set) lazy var cartImageView = getCartView()
     
 }

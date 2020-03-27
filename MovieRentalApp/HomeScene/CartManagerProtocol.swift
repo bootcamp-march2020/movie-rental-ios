@@ -10,6 +10,7 @@
 import Foundation
 
 protocol CartManagerProtocol: ClassProtocol {
+    var valueUpdater: CartValueUpdator? {get set}
     var moviesInCart: [MovieModel] {get}
     func addMovie(movie: MovieModel)
     func removeMovie(movie: MovieModel)

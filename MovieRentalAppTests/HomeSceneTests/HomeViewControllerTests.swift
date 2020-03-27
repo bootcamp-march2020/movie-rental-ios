@@ -64,9 +64,13 @@ class MockHomePresenter: HomePresenterProtocol {
 
 extension MovieModel {
     
-    static let dummy: MovieModel = MovieModel.init(id: "sf", name: "sf", posterUrlString: "url", ratings: "7.8")
+    static let dummy: MovieModel = MovieModel.init(id: 1, name: "sf", posterUrlString: "url", ratings: "7.8")
     static func dummies(number: Int) -> [MovieModel] {
-        return (0 ..< number).map { _ in .dummy }
+        var movies: [MovieModel] = []
+        for i in 0..<number {
+            movies.append(MovieModel.init(id: i, name: "sf", posterUrlString: "sf", ratings: "6.7"))
+        }
+        return movies
     }
     
 }
