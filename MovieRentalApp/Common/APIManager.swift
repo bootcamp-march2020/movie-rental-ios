@@ -24,6 +24,10 @@ enum ResponseError: Error {
     }
 }
 
+enum HTTPMethod: String {
+    case GET, POST, PUT, DELETE
+}
+
 class APIManager {
     
     static let shared = APIManager()
@@ -49,7 +53,7 @@ class APIManager {
         }.resume()
     }
     
-    func makeServerCall(_ url: String, method: String = "GET", completion: @escaping ServerResponseCompletionHandler) {
+    func makeServerCall(_ url: String, method: HTTPMethod = .GET, body: Data? = nil, completion: @escaping ServerResponseCompletionHandler) {
         
         guard let url = URL(string: url) else {
             completion(.failure(NetworkError.InvalidURL))
@@ -57,7 +61,7 @@ class APIManager {
         }
         
         do {
-            let request = try getServerURLRequest(for: url, method: method)
+            let request = try getServerURLRequest(for: url, method: method, bodyData: body)
             makeAPICall(with: request) { result in
                 switch result {
                 case let .success(data):
@@ -89,10 +93,14 @@ class APIManager {
         return payload
     }
     
-    func getServerURLRequest(for url: URL, method: String) throws -> URLRequest {
+    func getServerURLRequest(for url: URL, method: HTTPMethod, bodyData: Data? = nil) throws -> URLRequest {
         guard let idToken = sessionManager.getAccessToken() else { throw NetworkError.InvalidUser }
         var request = URLRequest(url: url)
-        request.httpMethod = method
+        request.httpMethod = method.rawValue
+        if method == .POST {
+            request.addValue("application/json", forHTTPHeaderField: "content-type")
+            request.httpBody = bodyData
+        }
         request.addValue(idToken, forHTTPHeaderField: "id-token")
         return request
     }
@@ -100,6 +108,11 @@ class APIManager {
     func getMoviesList(completion: @escaping ServerResponseCompletionHandler) {
         let movieUrl = CONFIG.BASE_URL + "/movies"
         makeServerCall(movieUrl, completion: completion)
+    }
+    
+    func checkoutItems(bodyData: Data, completion: @escaping ServerResponseCompletionHandler) {
+        let checkoutUrl = CONFIG.BASE_URL + "/checkout"
+        makeServerCall(checkoutUrl, method: .POST, body: bodyData, completion: completion)
     }
     
 }

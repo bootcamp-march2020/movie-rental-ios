@@ -31,7 +31,7 @@ class MovieCell: UICollectionViewCell {
         self.movie = movie
         self.cartManagerDelegate = cartManager
         self.movieTitleLabel.text = movie.name
-        self.ratingLabel.text = movie.ratings
+        self.ratingLabel.text = "Ratings: \(movie.ratings)"
         self.moviePoster.loadImageUsingURLString(movie.posterUrlString)
         updateAddToCartButton()
     }

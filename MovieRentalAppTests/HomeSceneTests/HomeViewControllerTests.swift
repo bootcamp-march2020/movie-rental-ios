@@ -64,13 +64,24 @@ class MockHomePresenter: HomePresenterProtocol {
 
 extension MovieModel {
     
-    static let dummy: MovieModel = MovieModel.init(id: 1, name: "sf", posterUrlString: "url", ratings: "7.8")
-    static func dummies(number: Int) -> [MovieModel] {
-        var movies: [MovieModel] = []
-        for i in 0..<number {
-            movies.append(MovieModel.init(id: i, name: "sf", posterUrlString: "sf", ratings: "6.7"))
-        }
-        return movies
+    static let dummy = getDummy(with: 1)
+    
+    static func getDummy(with id: Int) -> MovieModel {
+        return MovieModel(
+            id: id,
+            name: "sf",
+            posterUrlString: "url",
+            ratings: 7.8,
+            pricing: .dummy
+        )
     }
     
+    static func dummies(number: Int) -> [MovieModel] {
+        return (0 ..< number).map { MovieModel.getDummy(with: $0) }
+    }
+    
+}
+
+extension PricingModel {
+    static let dummy = PricingModel(id: 1, name: "sf", initialCostString: "sf", additionalCostString: "sf")
 }

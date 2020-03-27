@@ -61,8 +61,7 @@ class NavigationController: UINavigationController {
     }
     
     @objc private func handleViewCartAction() {
-        let movies = CartManager.shared.moviesInCart
-        guard let controller = CartViewController(movies: movies) else {
+        guard let controller = CartViewController(cartManager: CartManager.shared) else {
             let alert = UIAlertController(
                 title: "Cart is Empty!",
                 message: "Please add some items in the cart to proceed.",

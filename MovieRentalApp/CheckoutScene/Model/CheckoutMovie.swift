@@ -9,11 +9,10 @@
 import Foundation
 
 struct CheckoutMovie {
+    let mid: Int
     let movieName: String
     let numberOfDays: Int
     let cost: Double
-    let posterUrl: String
-    let initialCostString: String
-    let additionalCostString: String
-    let pricingType: String
+    var posterUrl: String?
+    var pricingModel: PricingModel?
 }

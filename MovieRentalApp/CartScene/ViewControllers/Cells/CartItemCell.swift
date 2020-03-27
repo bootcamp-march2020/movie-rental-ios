@@ -10,6 +10,10 @@ import UIKit
 
 class CartItemCell: UITableViewCell {
     
+    typealias RentUpdater = (Int)->()
+    
+    private var rentUpdater: RentUpdater?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -21,28 +25,38 @@ class CartItemCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setMovie(_ movie: MovieModel) {
+    func setMovie(_ movie: MovieModel, rent: Int, rentUpdater: RentUpdater?) {
         movieImageView.loadImageUsingURLString(movie.posterUrlString)
         movieTitleLabel.text = movie.name
-        pricingTypeLabel.text = "New"
-        pricingLabel.text = "$3 for 5 days\n$1 afterwards"
-        rentalValueLabel.text = "\(CONFIG.DEFAULT_RENTAL_DAYS)"
+        pricingTypeLabel.text = movie.pricing.name
+        pricingLabel.text = movie.pricing.formattedPricing
+        stepper.value = Double(rent)
+        rentalValueLabel.text = "\(rent)"
+        rentalDaysLabel.text = "Number of Days"
+        self.rentUpdater = rentUpdater
     }
     
     func setMovieInCheckOut(checkOutMovieModel: CheckoutMovie) {
         stepper.isHidden = true
         rentalValueLabel.isHidden = false
-        movieImageView.loadImageUsingURLString(checkOutMovieModel.posterUrl)
+        
         movieTitleLabel.text = checkOutMovieModel.movieName
-        pricingTypeLabel.text = checkOutMovieModel.pricingType
-        pricingLabel.text = checkOutMovieModel.initialCostString  +
-            " " + checkOutMovieModel.additionalCostString
-        rentalValueLabel.text = "\(CONFIG.DEFAULT_RENTAL_DAYS)  \(checkOutMovieModel.numberOfDays)"
-        rentalValueLabel.text = "\(checkOutMovieModel.cost)"
+        rentalDaysLabel.text = "Rented Days: \(checkOutMovieModel.numberOfDays)"
+        rentalValueLabel.text = "$\(checkOutMovieModel.cost)"
+        
+        if let posterUrl = checkOutMovieModel.posterUrl,
+            let pricingModel = checkOutMovieModel.pricingModel
+        {
+            movieImageView.loadImageUsingURLString(posterUrl)
+            pricingTypeLabel.text = pricingModel.name
+            pricingLabel.text = pricingModel.formattedPricing
+        }
     }
     
     @objc private func handleStepperValueChange() {
-        rentalValueLabel.text = "\(Int(stepper.value))"
+        let days = Int(stepper.value)
+        rentalValueLabel.text = "\(days)"
+        rentUpdater?(days)
     }
     
     private lazy var movieImageView: AsyncImageView = {
@@ -106,7 +120,7 @@ class CartItemCell: UITableViewCell {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .systemFont(ofSize: 17, weight: .bold)
-        view.numberOfLines = 2
+        view.numberOfLines = 1
         view.textAlignment = .right
         return view
     }()
@@ -136,7 +150,7 @@ class CartItemCell: UITableViewCell {
         
         rentalValueLabel.matchContraint(.bottom, ofView: rentalDaysLabel)
         rentalValueLabel.anchorTrailing(padding: -12)
-        rentalValueLabel.setConstantWidth(30)
+        rentalValueLabel.setConstantRestrictingWidth(30)
         
         stepper.placeBeforeTo(view: rentalValueLabel)
         stepper.alignVerticallyCenter(with: rentalValueLabel)

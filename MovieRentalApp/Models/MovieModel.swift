@@ -12,9 +12,21 @@ struct MovieModel: Equatable {
     let id: Int
     let name: String
     let posterUrlString: String
-    let ratings: String
+    let ratings: Double
+    let pricing: PricingModel
     
     static func ==(lhs: MovieModel, rhs: MovieModel) -> Bool {
         return lhs.id == rhs.id
+    }
+}
+
+struct PricingModel {
+    let id: Int
+    let name: String
+    let initialCostString: String
+    let additionalCostString: String
+    
+    var formattedPricing: String {
+        return initialCostString + "\n" + additionalCostString
     }
 }

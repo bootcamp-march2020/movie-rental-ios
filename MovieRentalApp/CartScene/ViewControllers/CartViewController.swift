@@ -8,15 +8,28 @@
 
 import UIKit
 
-class CartViewController: UIViewController {
-    
-    private (set) public var movies: [MovieModel] = []
+class CartViewController: UIViewController, CartViewControllerProtocol {
+
     private let kCellId = "itemsCell"
+    private let cartManager: CartManagerProtocol
     
-    init?(movies: [MovieModel]) {
-        if movies.isEmpty { return nil }
-        self.movies = movies
+    lazy var presenter: CartPresenterProtocol = {
+        let presenter = CartPresenter()
+        presenter.viewController = self
+        return presenter
+    }()
+    
+    private (set) var rentalDict: [Int: Int] = [:]
+    
+    var moviesInCart: [MovieModel] {
+        return cartManager.moviesInCart
+    }
+    
+    init?(cartManager: CartManagerProtocol) {
+        self.cartManager = cartManager
         super.init(nibName: nil, bundle: nil)
+        if moviesInCart.isEmpty { return nil }
+        moviesInCart.forEach { rentalDict[$0.id] = CONFIG.DEFAULT_RENTAL_DAYS }
     }
     
     required init?(coder: NSCoder) {
@@ -36,9 +49,26 @@ class CartViewController: UIViewController {
         setupConstraints()
     }
     
+    func showLoading(_ loading: Bool) {
+        loading ? checkOutButton.showLoading() : checkOutButton.stopLoading()
+    }
+    
+    func showCheckout(for items: [CheckoutMovie]) {
+        guard let controller = CheckoutViewController(checkoutItems: items) else {
+            let alert = UIAlertController(title: "Invalid Checkout!", message: "No checkout items to proceed", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            return
+        }
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     //MARK: Actions
     @objc private func handleCancelAction() {
         dismiss(animated: true)
+    }
+    
+    @objc private func handleCheckoutAction() {
+        presenter.handleCartCheckout(for: moviesInCart, rentalDict: rentalDict)
     }
     
     //MARK: Views and Constraints
@@ -46,30 +76,27 @@ class CartViewController: UIViewController {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.register(CartItemCell.self, forCellReuseIdentifier: kCellId)
-        view.rowHeight = 124
+        view.rowHeight = 150
         view.dataSource = self
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 80))
         footerView.addSubview(checkOutButton)
         checkOutButton.alignCenter()
         view.tableFooterView = footerView
+        view.allowsSelection = false
+        view.delegate = self
         return view
     }()
     
-    private lazy var checkOutButton: UIButton = {
-        let view = UIButton(type: .roundedRect)
+    private lazy var checkOutButton: ActionButton = {
+        let view = ActionButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setConstantHeight(38)
         view.setConstantWidth(120)
-        view.backgroundColor = .systemBlue
-        view.setTitleColor(.white, for: .normal)
         view.setTitle("Checkout", for: .normal)
-        view.addTarget(self, action: #selector(checkoutCart), for: UIControl.Event.touchUpInside)
-        view.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-        view.layer.cornerRadius = 19
-        view.layer.masksToBounds = true
-        view.titleEdgeInsets = .init(top: 12, left: 20, bottom: 12, right: 20)
+        view.addTarget(self, action: #selector(handleCheckoutAction), for: .touchUpInside)
         return view
     }()
+    
     
     private func setupViews() {
         view.addSubview(tableView)
@@ -78,25 +105,41 @@ class CartViewController: UIViewController {
     private func setupConstraints() {
         tableView.fillSuperView()
     }
-    
-    @objc func checkoutCart() {
-        let checkoutController = CheckoutViewController.init()
-        self.navigationController?.pushViewController(checkoutController, animated: true)
-    }
-    
+
 }
 
 
 extension CartViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        return moviesInCart.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! CartItemCell
-        cell.setMovie(movies[indexPath.row])
+        let movie = moviesInCart[indexPath.row]
+        cell.setMovie(movie,
+                      rent: rentalDict[movie.id] ?? CONFIG.DEFAULT_RENTAL_DAYS,
+                      rentUpdater: { [weak self] rent in self?.rentalDict[movie.id] = rent })
         return cell
+    }
+    
+}
+
+extension CartViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            cartManager.removeMovie(movie: moviesInCart[indexPath.row])
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            if moviesInCart.isEmpty {
+                dismiss(animated: true)
+            }
+        }
     }
     
 }

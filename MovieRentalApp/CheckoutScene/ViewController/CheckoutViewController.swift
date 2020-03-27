@@ -14,6 +14,16 @@ class CheckoutViewController: UIViewController {
     
     private var checkOutMovies: [CheckoutMovie] = []
     
+    init?(checkoutItems: [CheckoutMovie]) {
+        if checkoutItems.isEmpty { return nil }
+        self.checkOutMovies = checkoutItems
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private lazy var listView: UITableView = {
         let tableView = UITableView.init()
         tableView.isScrollEnabled = true
@@ -73,6 +83,7 @@ class CheckoutViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.setUpView()
         self.setViewConstraints()
+        self.listView.reloadData()
     }
     
     private func setUpView() {
@@ -93,7 +104,7 @@ class CheckoutViewController: UIViewController {
         self.addressView.heightAnchor.constraint(equalToConstant: 100).isActive = true
         self.addressView.bottomAnchor.constraint(equalTo: self.totalLabel.topAnchor, constant: -25).isActive = true
         self.confirmButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
-        self.confirmButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -10).isActive = true
+        self.confirmButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         self.totalPriceLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
         self.totalPriceLabel.bottomAnchor.constraint(equalTo: self.confirmButton.topAnchor, constant: -10).isActive = true
         self.totalPriceLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -119,12 +130,12 @@ class CheckoutViewController: UIViewController {
 extension CheckoutViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10// checkOutMovies.count
+        return checkOutMovies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as? CartItemCell {
-            //cell.setMovieInCheckOut(checkOutMovieModel: checkOutMovies[indexPath.item])
+            cell.setMovieInCheckOut(checkOutMovieModel: checkOutMovies[indexPath.item])
             return cell
         }
         return UITableViewCell()

@@ -63,14 +63,14 @@ class APIManagerTests: XCTestCase {
     func testGetServerURLRequestWithDummySession() {
         apiManager.sessionManager = DummySessionUtils.self
         let url = URL(string: "https://www.google.com/")!
-        let method = "POST"
+        let method: HTTPMethod = .POST
         
         guard let request = try? apiManager.getServerURLRequest(for: url, method: method) else {
             assertionFailure("Shouldn't be nil")
             return
         }
         
-        XCTAssertEqual(request.httpMethod, method)
+        XCTAssertEqual(request.httpMethod, method.rawValue)
         let setToken = request.allHTTPHeaderFields?["id-token"]
         XCTAssertNotNil(setToken)
         XCTAssertEqual(setToken, apiManager.sessionManager.getAccessToken())
