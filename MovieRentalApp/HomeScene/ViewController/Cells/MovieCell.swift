@@ -33,6 +33,7 @@ class MovieCell: UICollectionViewCell {
         self.movieTitleLabel.text = movie.name
         self.ratingLabel.text = "Ratings: \(movie.ratings)"
         self.moviePoster.loadImageUsingURLString(movie.posterUrlString)
+        self.categoryLabel.text = movie.pricing.name
         updateAddToCartButton()
     }
     
@@ -64,7 +65,6 @@ class MovieCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.semibold)
-        label.text = "Harry Potter"
         return label
     }()
     
@@ -75,7 +75,14 @@ class MovieCell: UICollectionViewCell {
         label.textColor = UIColor.gray
         label.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.medium)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Rating: 7.6/10"
+        return label
+    }()
+    
+    lazy var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 15, weight: .bold)
+        label.textColor = .darkGray
         return label
     }()
     
@@ -106,6 +113,7 @@ class MovieCell: UICollectionViewCell {
         addSubview(addToCartButton)
         addSubview(movieTitleLabel)
         addSubview(ratingLabel)
+        addSubview(categoryLabel)
         updateAddToCartButton()
     }
     
@@ -115,21 +123,24 @@ class MovieCell: UICollectionViewCell {
         moviePoster.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
         moviePoster.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
         
-        addToCartButton.leadingAnchor.constraint(equalTo: self.ratingLabel.trailingAnchor, constant: 10).isActive = true
-        addToCartButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-        addToCartButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        addToCartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
-                
         movieTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         movieTitleLabel.topAnchor.constraint(equalTo: self.moviePoster.bottomAnchor, constant: 5).isActive = true
         movieTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
         movieTitleLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
+        categoryLabel.placeBelow(view: movieTitleLabel, padding: 3)
+        categoryLabel.anchorLeading(padding: 10)
+        
         ratingLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-        ratingLabel.topAnchor.constraint(equalTo: self.movieTitleLabel.bottomAnchor, constant: 5).isActive = true
+        ratingLabel.topAnchor.constraint(equalTo: self.categoryLabel.bottomAnchor, constant: 3).isActive = true
         ratingLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         ratingLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
         
+        addToCartButton.leadingAnchor.constraint(equalTo: self.ratingLabel.trailingAnchor, constant: 10).isActive = true
+        addToCartButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+        addToCartButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        addToCartButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
+          
     }
     
 }

@@ -43,10 +43,15 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
         
         title = "Cart"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(handleCancelAction))
         
         setupViews()
         setupConstraints()
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        tableView.setEditing(!tableView.isEditing, animated: animated)
     }
     
     func showLoading(_ loading: Bool) {
@@ -76,7 +81,7 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
         let view = UITableView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.register(CartItemCell.self, forCellReuseIdentifier: kCellId)
-        view.rowHeight = 150
+        view.rowHeight = UITableView.automaticDimension
         view.dataSource = self
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 80))
         footerView.addSubview(checkOutButton)
@@ -129,7 +134,7 @@ extension CartViewController: UITableViewDataSource {
 extension CartViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return false
+        return true
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

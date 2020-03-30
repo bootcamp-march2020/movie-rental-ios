@@ -27,6 +27,8 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
             cartManager.valueUpdater = controller.cartImageView
         }
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCartItemDidChangeNotification(_:)), name: CartItemDidChangeNotification, object: nil)
+        
         setupViews()
         setupConstraints()
         (presenter as? HomePresenter)?.viewController = self
@@ -45,6 +47,11 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     func showError(_ error: Error) {
         collectionView.isHidden = true
         placeholderLabel.text = String(describing: error)
+    }
+    
+    //MARK: Actions
+    @objc func handleCartItemDidChangeNotification(_ notification: Notification) {
+        DispatchQueue.main.async { self.collectionView.reloadData() }
     }
     
     //MARK: Views and Constraints
@@ -112,7 +119,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
         let insets = collectionView.contentInset
         let contentWidth = collectionView.bounds.width - (insets.left + insets.right)
         let width = (contentWidth / 2) - 5
-        return CGSize.init(width: width, height: width * 1.5)
+        return CGSize.init(width: width, height: width * 1.65)
     }
     
 }

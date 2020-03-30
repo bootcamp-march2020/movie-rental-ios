@@ -105,6 +105,18 @@ class CartItemCell: UITableViewCell {
         return view
     }()
     
+    private lazy var errorLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.font = .systemFont(ofSize: 15)
+        view.textColor = .systemRed
+        view.numberOfLines = 1
+        view.adjustsFontSizeToFitWidth = true
+        view.text = "Out of Stock"
+        view.isHidden = true
+        return view
+    }()
+    
     private lazy var stepper: UIStepper = {
         let view = UIStepper()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -126,7 +138,7 @@ class CartItemCell: UITableViewCell {
     }()
     
     private func setupViews() {
-        [movieImageView, movieTitleLabel, pricingLabel, pricingTypeLabel, rentalDaysLabel, stepper, rentalValueLabel].forEach { contentView.addSubview($0) }
+        [movieImageView, movieTitleLabel, pricingLabel, pricingTypeLabel, errorLabel, rentalDaysLabel, stepper, rentalValueLabel].forEach { contentView.addSubview($0) }
     }
     
     private func setupConstraints() {
@@ -141,10 +153,14 @@ class CartItemCell: UITableViewCell {
         pricingTypeLabel.placeBelow(view: movieTitleLabel, padding: 5)
         pricingTypeLabel.matchContraint(.leading, ofView: movieTitleLabel)
         
+        errorLabel.placeBelow(view: pricingTypeLabel, padding: 5)
+        errorLabel.matchContraint(.leading, ofView: movieTitleLabel)
+        
         pricingLabel.matchContraint(.top, ofView: movieTitleLabel)
         pricingLabel.anchorTrailing(padding: -12)
         pricingLabel.setConstantWidth(90)
         
+        rentalDaysLabel.placeBelow(view: errorLabel, padding: 12)
         rentalDaysLabel.anchorBottom(padding: -24)
         rentalDaysLabel.matchContraint(.leading, ofView: movieTitleLabel)
         
@@ -152,6 +168,7 @@ class CartItemCell: UITableViewCell {
         rentalValueLabel.anchorTrailing(padding: -12)
         rentalValueLabel.setConstantRestrictingWidth(30)
         
+        stepper.leadingAnchor.constraint(greaterThanOrEqualTo: rentalDaysLabel.trailingAnchor).isActive = true
         stepper.placeBeforeTo(view: rentalValueLabel)
         stepper.alignVerticallyCenter(with: rentalValueLabel)
     }

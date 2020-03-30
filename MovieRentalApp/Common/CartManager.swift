@@ -8,6 +8,8 @@
 
 import Foundation
 
+let CartItemDidChangeNotification = Notification.Name("CartItemDidChangeNotification")
+
 class CartManager: CartManagerProtocol {
     
     static let shared = CartManager()
@@ -18,6 +20,7 @@ class CartManager: CartManagerProtocol {
     func addMovie(movie: MovieModel) {
         moviesInCart.append(movie)
         valueUpdater?.showCartCount(moviesInCart.count)
+        NotificationCenter.default.post(name: CartItemDidChangeNotification, object: nil)
     }
     
     func removeMovie(movie: MovieModel) {
@@ -25,6 +28,7 @@ class CartManager: CartManagerProtocol {
             movie.id == movieModel.id
         }
         valueUpdater?.showCartCount(moviesInCart.count)
+        NotificationCenter.default.post(name: CartItemDidChangeNotification, object: nil)
     }
     
 }
