@@ -19,15 +19,17 @@ class CartPresenter: CartPresenterProtocol {
             DispatchQueue.main.async { self.viewController?.showLoading(false) }
             switch result {
             case let .success(checkoutMovies):
-                var cMovies = checkoutMovies
-                (0 ..< checkoutMovies.count).forEach { index in
+                var checkoutMovieModel = checkoutMovies
+                var cMovies = checkoutMovieModel.moviesList
+                (0 ..< cMovies.count).forEach { index in
                     if let movie = items.first(where: { $0.id == cMovies[index].mid }) {
                         cMovies[index].posterUrl = movie.posterUrlString
                         cMovies[index].pricingModel = movie.pricing
                     }
                 }
+                checkoutMovieModel.moviesList = cMovies
                 DispatchQueue.main.async {
-                    self.viewController?.showCheckout(for: cMovies)
+                    self.viewController?.showCheckout(for: checkoutMovieModel)
                 }
                 
             case let .failure(error):

@@ -45,10 +45,14 @@ class JSONManager {
         return try JSONSerialization.data(withJSONObject: jsonObject, options: [])
     }
     
-    func parseCheckoutMovies(from obj: Any) throws -> [CheckoutMovie] {
+    func parseCheckoutMovies(from obj: Any) throws -> CheckoutMoviesSceneModel {
         guard let json = obj as? [String: Any] else { throw JSONError.ResponseFormatError }
+        guard let totalCost = json["totalCost"] as? Double else {
+            throw JSONError.ResponseFormatError
+        }
         guard let cartItemLists = json["cartItemList"] as? [[String: Any]] else { throw JSONError.ResponseFormatError }
-        return cartItemLists.map { parseCheckoutMovie(from: $0) }
+        let checkOutMovieSceneModel = CheckoutMoviesSceneModel.init(moviesList: cartItemLists.map { parseCheckoutMovie(from: $0) }, totalCost: totalCost)
+        return checkOutMovieSceneModel
     }
     
     func parseCheckoutMovie(from dict: [String: Any]) -> CheckoutMovie {

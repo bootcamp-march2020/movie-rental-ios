@@ -53,8 +53,8 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
         loading ? checkOutButton.showLoading() : checkOutButton.stopLoading()
     }
     
-    func showCheckout(for items: [CheckoutMovie]) {
-        guard let controller = CheckoutViewController(checkoutItems: items) else {
+    func showCheckout(for checkoutMovieModel: CheckoutMoviesSceneModel) {
+        guard let controller = CheckoutViewController.init(checkoutSceneModel: checkoutMovieModel) else {
             let alert = UIAlertController(title: "Invalid Checkout!", message: "No checkout items to proceed", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             return

@@ -10,5 +10,5 @@ import Foundation
 
 protocol CartViewControllerProtocol: ClassProtocol {
     func showLoading(_ loading: Bool)
-    func showCheckout(for items: [CheckoutMovie])
+    func showCheckout(for checkoutMovieModel: CheckoutMoviesSceneModel)
 }

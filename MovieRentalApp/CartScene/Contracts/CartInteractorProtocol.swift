@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CartInteractorProtocol: ClassProtocol {
-    func checkoutItems(rentalDict: [Int: Int], completion: @escaping (Result<[CheckoutMovie], Error>)->())
+    func checkoutItems(rentalDict: [Int: Int], completion: @escaping (Result<CheckoutMoviesSceneModel, Error>)->())
 }

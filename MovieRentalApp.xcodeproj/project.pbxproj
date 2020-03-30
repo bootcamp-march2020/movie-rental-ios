@@ -11,6 +11,7 @@
 		2A9319EB242DE37E00063EED /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9319EA242DE37E00063EED /* CheckoutViewController.swift */; };
 		2A9319F2242DE50D00063EED /* CheckoutMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9319F1242DE50D00063EED /* CheckoutMovie.swift */; };
 		2A9319F4242DE5FD00063EED /* AddressComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9319F3242DE5FD00063EED /* AddressComponentView.swift */; };
+		2AB2FE602431BC30004860C6 /* CheckoutMoviesSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE5F2431BC30004860C6 /* CheckoutMoviesSceneModel.swift */; };
 		2AE5556D242B19FF008A6D81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5556C242B19FF008A6D81 /* AppDelegate.swift */; };
 		2AE55571242B19FF008A6D81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55570242B19FF008A6D81 /* ViewController.swift */; };
 		2AE55576242B1A00008A6D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55575242B1A00008A6D81 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		2A9319EA242DE37E00063EED /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		2A9319F1242DE50D00063EED /* CheckoutMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutMovie.swift; sourceTree = "<group>"; };
 		2A9319F3242DE5FD00063EED /* AddressComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressComponentView.swift; sourceTree = "<group>"; };
+		2AB2FE5F2431BC30004860C6 /* CheckoutMoviesSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutMoviesSceneModel.swift; sourceTree = "<group>"; };
 		2AE55569242B19FF008A6D81 /* MovieRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE5556C242B19FF008A6D81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AE55570242B19FF008A6D81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				2A9319F1242DE50D00063EED /* CheckoutMovie.swift */,
+				2AB2FE5F2431BC30004860C6 /* CheckoutMoviesSceneModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				9BDC196A242CC3C9009908D8 /* Configuration.swift in Sources */,
 				9BB46D21242E0DCA00DFCA17 /* CartInteractor.swift in Sources */,
 				9BBDDE01242B5E3700D810AD /* HomePresenterProtocol.swift in Sources */,
+				2AB2FE602431BC30004860C6 /* CheckoutMoviesSceneModel.swift in Sources */,
 				9BDC1969242CC3C0009908D8 /* RootRouter.swift in Sources */,
 				9BB46D11242DE3A600DFCA17 /* CartViewController.swift in Sources */,
 				9BBDDE0C242B68D700D810AD /* HomeInteractor.swift in Sources */,

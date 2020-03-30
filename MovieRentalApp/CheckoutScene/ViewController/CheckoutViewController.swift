@@ -14,10 +14,11 @@ class CheckoutViewController: UIViewController {
     
     private var checkOutMovies: [CheckoutMovie] = []
     
-    init?(checkoutItems: [CheckoutMovie]) {
-        if checkoutItems.isEmpty { return nil }
-        self.checkOutMovies = checkoutItems
+    init?(checkoutSceneModel: CheckoutMoviesSceneModel) {
+        if checkoutSceneModel.moviesList.isEmpty { return nil }
+        self.checkOutMovies = checkoutSceneModel.moviesList
         super.init(nibName: nil, bundle: nil)
+        self.totalPriceLabel.text = "$ \(checkoutSceneModel.totalCost)"
     }
     
     required init?(coder: NSCoder) {
@@ -26,6 +27,9 @@ class CheckoutViewController: UIViewController {
     
     private lazy var listView: UITableView = {
         let tableView = UITableView.init()
+        addressView.frame = CGRect(x: 0, y: 0, width: 200, height: 120)
+        tableView.tableFooterView = addressView
+        tableView.keyboardDismissMode = .interactive
         tableView.isScrollEnabled = true
         tableView.rowHeight = 125
         tableView.backgroundColor = UIColor.white
@@ -39,6 +43,8 @@ class CheckoutViewController: UIViewController {
         let totalLabel = UILabel.init()
         totalLabel.translatesAutoresizingMaskIntoConstraints = false
         totalLabel.sizeToFit()
+        totalLabel.text = "Total"
+        totalLabel.font = UIFont.systemFont(ofSize: 16, weight: UIFont.Weight.semibold)
         totalLabel.setContentHuggingPriority(UILayoutPriority.init(999), for: NSLayoutConstraint.Axis.horizontal)
         return totalLabel
     }()
@@ -46,6 +52,7 @@ class CheckoutViewController: UIViewController {
     private lazy var totalPriceLabel: UILabel = {
         let totalLabel = UILabel.init()
         totalLabel.sizeToFit()
+        totalLabel.font = UIFont.systemFont(ofSize: 17, weight: UIFont.Weight.bold)
         totalLabel.setContentHuggingPriority(UILayoutPriority.init(999), for: NSLayoutConstraint.Axis.horizontal)
         totalLabel.translatesAutoresizingMaskIntoConstraints = false
         return totalLabel
@@ -69,8 +76,10 @@ class CheckoutViewController: UIViewController {
     private lazy var addressView: AddressComponentView = {
         let addressView = AddressComponentView.init()
         addressView.placeHolderLabel.text = "Address"
-        addressView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
-        addressView.translatesAutoresizingMaskIntoConstraints = false
+        addressView.backgroundColor = UIColor.init(white: 0.92, alpha: 1)
+        addressView.layer.cornerRadius = 8
+        addressView.isHidden = true
+        // addressView.translatesAutoresizingMaskIntoConstraints = false
         return addressView
     }()
     
@@ -88,7 +97,7 @@ class CheckoutViewController: UIViewController {
     
     private func setUpView() {
         self.view.addSubview(listView)
-        self.view.addSubview(addressView)
+//        self.view.addSubview(addressView)
         self.view.addSubview(totalLabel)
         self.view.addSubview(totalPriceLabel)
         self.view.addSubview(confirmButton)
@@ -98,14 +107,15 @@ class CheckoutViewController: UIViewController {
         self.listView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         self.listView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         self.listView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        self.addressView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15).isActive = true
-        self.addressView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
-        self.addressView.topAnchor.constraint(equalTo: self.listView.bottomAnchor, constant: 10).isActive = true
-        self.addressView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-        self.addressView.bottomAnchor.constraint(equalTo: self.totalLabel.topAnchor, constant: -25).isActive = true
+        self.confirmButton.topAnchor.constraint(equalTo: self.listView.bottomAnchor, constant: 10).isActive = true
+//        self.addressView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15).isActive = true
+//        self.addressView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
+//        self.addressView.topAnchor.constraint(equalTo: self.listView.bottomAnchor, constant: 10).isActive = true
+//        self.addressView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+//        self.addressView.bottomAnchor.constraint(equalTo: self.totalLabel.topAnchor, constant: -25).isActive = true
         self.confirmButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
         self.confirmButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-        self.totalPriceLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
+        self.totalPriceLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
         self.totalPriceLabel.bottomAnchor.constraint(equalTo: self.confirmButton.topAnchor, constant: -10).isActive = true
         self.totalPriceLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.totalLabel.trailingAnchor.constraint(equalTo: self.totalPriceLabel.leadingAnchor, constant: -20).isActive = true
@@ -115,7 +125,8 @@ class CheckoutViewController: UIViewController {
     
     @objc func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y -= keyboardSize.height
+//            self.view.frame.origin.y -= keyboardSize.height
+            listView.contentOffset.y += keyboardSize.height
         }
     }
 

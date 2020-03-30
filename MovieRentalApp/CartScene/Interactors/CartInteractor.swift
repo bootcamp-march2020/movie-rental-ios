@@ -23,7 +23,7 @@ class CartInteractor: CartInteractorProtocol {
         self.apiManager = apiManager
     }
     
-    func checkoutItems(rentalDict: [Int: Int], completion: @escaping (Result<[CheckoutMovie], Error>)->()) {
+    func checkoutItems(rentalDict: [Int: Int], completion: @escaping (Result<CheckoutMoviesSceneModel, Error>)->()) {
         do {
             let data = try jsonManager.getBodyDataFor(rentalDict: rentalDict)
             apiManager.checkoutItems(bodyData: data) { result in
