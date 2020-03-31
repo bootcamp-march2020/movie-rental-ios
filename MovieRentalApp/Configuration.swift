@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CONFIG {
+enum Config {
     static let CLIENT_ID = "936772320028-u2gh12om9ng67voal1mck32bgvobkcu7.apps.googleusercontent.com"
     static let BASE_URL = "https://tw-onlinestore.herokuapp.com/api"
     

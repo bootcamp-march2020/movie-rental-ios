@@ -13,16 +13,13 @@ class HomePresenter: HomePresenterProtocol {
     weak var viewController: HomeViewControllerProtocol?
     lazy var interactor: HomeInteractorProtocol = HomeInteractor()
     
-    public func getMoviesList() {
-        getMovieList()
-    }
-    
-    private func getMovieList() {
+    func getMoviesList() {
         interactor.getMovieList { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case let .failure(error):
                     self.viewController?.showError(error)
+                    
                 case let .success(data):
                     self.viewController?.populateMovies(data)
                 }

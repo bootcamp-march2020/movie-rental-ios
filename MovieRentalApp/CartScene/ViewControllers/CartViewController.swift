@@ -29,7 +29,7 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
         self.cartManager = cartManager
         super.init(nibName: nil, bundle: nil)
         if moviesInCart.isEmpty { return nil }
-        moviesInCart.forEach { rentalDict[$0.id] = CONFIG.DEFAULT_RENTAL_DAYS }
+        moviesInCart.forEach { rentalDict[$0.id] = Config.DEFAULT_RENTAL_DAYS }
     }
     
     required init?(coder: NSCoder) {
@@ -62,8 +62,12 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
         loading ? checkOutButton.showLoading() : checkOutButton.stopLoading()
     }
     
-    func showAlert() {
+    func showOutOfStockAlert() {
         showSimpleAlert(message: "Some of the items are Out of Stock. Please edit cart to continue.")
+    }
+    
+    func showError(_ error: Error) {
+        showSimpleAlert(message: error.localizedDescription)
     }
     
     func showCheckout(for checkoutMovieModel: CheckoutMoviesSceneModel) {
@@ -141,7 +145,7 @@ extension CartViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! CartItemCell
         let movie = moviesInCart[indexPath.row]
         cell.setMovie(movie,
-                      rent: rentalDict[movie.id] ?? CONFIG.DEFAULT_RENTAL_DAYS,
+                      rent: rentalDict[movie.id] ?? Config.DEFAULT_RENTAL_DAYS,
                       rentUpdater: { [weak self] rent in self?.rentalDict[movie.id] = rent })
         return cell
     }

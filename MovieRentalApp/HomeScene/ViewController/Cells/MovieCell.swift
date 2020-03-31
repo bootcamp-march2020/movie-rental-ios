@@ -27,7 +27,7 @@ class MovieCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func updateCell(movie: MovieModel, cartManager: CartManagerProtocol) {
+    func updateCell(movie: MovieModel, cartManager: CartManagerProtocol) {
         self.movie = movie
         self.cartManagerDelegate = cartManager
         self.movieTitleLabel.text = movie.name

@@ -51,23 +51,37 @@ class JSONManager {
         return try JSONSerialization.data(withJSONObject: jsonObject, options: [])
     }
     
-    func parseCheckoutMovies(from obj: Any) throws -> CheckoutMoviesSceneModel {
+    func parseCheckoutMovies(from obj: Any, movies: [MovieModel]) throws -> CheckoutMoviesSceneModel {
         guard let json = obj as? [String: Any] else { throw JSONError.ResponseFormatError }
-        let outOfStockMovieList: [Int] = json["outOfStockMoviesIds"] as? [Int] ?? []
+        
+        if let outOfStockMovieList: [Int] = json["outOfStockMoviesIds"] as? [Int],
+            !outOfStockMovieList.isEmpty
+        { throw CheckoutError.OutOfStock(movieIds: outOfStockMovieList) }
+        
         guard let totalCost = json["totalCost"] as? Double else {
             throw JSONError.ResponseFormatError
         }
+        
         guard let cartItemLists = json["cartItemList"] as? [[String: Any]] else { throw JSONError.ResponseFormatError }
-        let checkOutMovieSceneModel = CheckoutMoviesSceneModel.init(moviesList: cartItemLists.map { parseCheckoutMovie(from: $0) }, totalCost: totalCost, outOfStockMovies: outOfStockMovieList)
+        
+        let checkOutMovieSceneModel = CheckoutMoviesSceneModel.init(
+            moviesList: cartItemLists.map { parseCheckoutMovie(from: $0, movies: movies) },
+            totalCost: totalCost
+        )
         return checkOutMovieSceneModel
     }
     
-    func parseCheckoutMovie(from dict: [String: Any]) -> CheckoutMovie {
+    func parseCheckoutMovie(from dict: [String: Any], movies: [MovieModel]) -> CheckoutMovie {
         let movieDetails = dict["movie"] as? [String: Any] ?? [:]
         let id = movieDetails["id"] as? Int ?? 0
         let name = movieDetails["title"] as? String ?? ""
         let numberOfDays = dict["numberOfDays"] as? Int ?? 0
         let cost = dict["cost"] as? Double ?? 0
+        
+        if let movie = movies.first(where: { $0.id == id }) {
+            return CheckoutMovie(mid: id, movieName: name, numberOfDays: numberOfDays, cost: cost, posterUrl: movie.posterUrlString, pricingModel: movie.pricing)
+        }
+        
         return CheckoutMovie(mid: id, movieName: name, numberOfDays: numberOfDays, cost: cost, posterUrl: nil, pricingModel: nil)
     }
     

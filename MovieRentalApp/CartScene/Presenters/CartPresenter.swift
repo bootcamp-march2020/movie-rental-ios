@@ -15,31 +15,20 @@ class CartPresenter: CartPresenterProtocol {
     
     func handleCartCheckout(for items: [MovieModel], rentalDict: [Int: Int]) {
         viewController?.showLoading(true)
-        interactor.checkoutItems(rentalDict: rentalDict) { result in
-            DispatchQueue.main.async { self.viewController?.showLoading(false) }
-            switch result {
-            case let .success(checkoutMovies):
-                var checkoutMovieModel = checkoutMovies
-                if !checkoutMovieModel.outOfStockMovies.isEmpty {
-                    DispatchQueue.main.async {
-                        self.viewController?.showAlert()
+        interactor.checkoutItems(movies: items, rentalDict: rentalDict) { result in
+            DispatchQueue.main.async {
+                self.viewController?.showLoading(false)
+                switch result {
+                case let .success(checkoutMovieSceneModel):
+                        self.viewController?.showCheckout(for: checkoutMovieSceneModel)
+                    
+                case let .failure(error):
+                    if case CheckoutError.OutOfStock(_) = error {
+                        self.viewController?.showOutOfStockAlert()
+                        return
                     }
-                } else {
-                    var cMovies = checkoutMovieModel.moviesList
-                    (0 ..< cMovies.count).forEach { index in
-                        if let movie = items.first(where: { $0.id == cMovies[index].mid }) {
-                            cMovies[index].posterUrl = movie.posterUrlString
-                            cMovies[index].pricingModel = movie.pricing
-                        }
-                    }
-                    checkoutMovieModel.moviesList = cMovies
-                    DispatchQueue.main.async {
-                        self.viewController?.showCheckout(for: checkoutMovieModel)
-                    }
+                    self.viewController?.showError(error)
                 }
-                
-            case let .failure(error):
-                print(error)
             }
         }
     }

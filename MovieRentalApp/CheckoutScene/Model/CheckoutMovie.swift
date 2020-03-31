@@ -13,13 +13,6 @@ struct CheckoutMovie {
     let movieName: String
     let numberOfDays: Int
     let cost: Double
-    var posterUrl: String?
-    var pricingModel: PricingModel?
-    
-    func updatePosterUrl(_ url: String, andPricing model: PricingModel) -> CheckoutMovie {
-        var copy = self
-        copy.posterUrl = url
-        copy.pricingModel = model
-        return copy
-    }
+    let posterUrl: String?
+    let pricingModel: PricingModel?
 }

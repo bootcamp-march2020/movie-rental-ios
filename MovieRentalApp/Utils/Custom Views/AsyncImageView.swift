@@ -14,7 +14,7 @@ let imageCache =  NSCache<AnyObject, AnyObject>()
 
 class AsyncImageView: UIImageView {
     
-    var imageUrl: URL?
+    private var imageUrl: URL?
     
     func loadImage(with url: URL) {
         imageUrl = url

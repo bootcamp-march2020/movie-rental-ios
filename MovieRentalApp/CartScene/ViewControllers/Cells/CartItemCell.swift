@@ -129,9 +129,9 @@ class CartItemCell: UITableViewCell {
         let view = UIStepper()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-        view.minimumValue = Double(CONFIG.MIN_RENTAL_DAYS)
-        view.maximumValue = Double(CONFIG.MAX_RENTAL_DAYS)
-        view.value = Double(CONFIG.DEFAULT_RENTAL_DAYS)
+        view.minimumValue = Double(Config.MIN_RENTAL_DAYS)
+        view.maximumValue = Double(Config.MAX_RENTAL_DAYS)
+        view.value = Double(Config.DEFAULT_RENTAL_DAYS)
         view.addTarget(self, action: #selector(handleStepperValueChange), for: .valueChanged)
         return view
     }()

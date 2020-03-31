@@ -107,17 +107,17 @@ class APIManager {
     }
     
     func getMoviesList(completion: @escaping ServerResponseCompletionHandler) {
-        let movieUrl = CONFIG.BASE_URL + "/movies"
+        let movieUrl = Config.BASE_URL + "/movies"
         makeServerCall(movieUrl, completion: completion)
     }
     
     func checkoutItems(bodyData: Data, completion: @escaping ServerResponseCompletionHandler) {
-        let checkoutUrl = CONFIG.BASE_URL + "/checkout"
+        let checkoutUrl = Config.BASE_URL + "/checkout"
         makeServerCall(checkoutUrl, method: .POST, body: bodyData, completion: completion)
     }
     
     func placeOrder(bodyData: Data, completion: @escaping ServerResponseCompletionHandler) {
-        let checkoutUrl = CONFIG.BASE_URL + "/placeorder"
+        let checkoutUrl = Config.BASE_URL + "/placeorder"
         makeServerCall(checkoutUrl, method: .POST, body: bodyData, completion: completion)
     }
 }
