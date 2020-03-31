@@ -14,10 +14,11 @@
 		2AB2FE602431BC30004860C6 /* CheckoutMoviesSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE5F2431BC30004860C6 /* CheckoutMoviesSceneModel.swift */; };
 		2AB2FE632432083C004860C6 /* CheckoutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE622432083C004860C6 /* CheckoutInteractor.swift */; };
 		2AB2FE6524320F93004860C6 /* CheckoutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */; };
+		2AB2FE6724334445004860C6 /* HomeInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE6624334445004860C6 /* HomeInteractorTests.swift */; };
+		2AB2FE6B2433518D004860C6 /* CartInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE6A2433518D004860C6 /* CartInteractorTests.swift */; };
 		2AE5556D242B19FF008A6D81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5556C242B19FF008A6D81 /* AppDelegate.swift */; };
 		2AE55576242B1A00008A6D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55575242B1A00008A6D81 /* Assets.xcassets */; };
 		2AE55579242B1A00008A6D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55577242B1A00008A6D81 /* LaunchScreen.storyboard */; };
-		2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */; };
 		2AE555A4242B884B008A6D81 /* AsyncImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A3242B884B008A6D81 /* AsyncImageView.swift */; };
 		2AE555A6242CB4B3008A6D81 /* CartManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A5242CB4B3008A6D81 /* CartManagerProtocol.swift */; };
 		2AE555A8242CB56C008A6D81 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A7242CB56C008A6D81 /* CartManager.swift */; };
@@ -76,13 +77,14 @@
 		2AB2FE5F2431BC30004860C6 /* CheckoutMoviesSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutMoviesSceneModel.swift; sourceTree = "<group>"; };
 		2AB2FE622432083C004860C6 /* CheckoutInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutInteractor.swift; sourceTree = "<group>"; };
 		2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutPresenter.swift; sourceTree = "<group>"; };
+		2AB2FE6624334445004860C6 /* HomeInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractorTests.swift; sourceTree = "<group>"; };
+		2AB2FE6A2433518D004860C6 /* CartInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartInteractorTests.swift; sourceTree = "<group>"; };
 		2AE55569242B19FF008A6D81 /* MovieRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE5556C242B19FF008A6D81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AE55575242B1A00008A6D81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AE55578242B1A00008A6D81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AE5557A242B1A00008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE5557F242B1A00008A6D81 /* MovieRentalAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieRentalAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRentalAppTests.swift; sourceTree = "<group>"; };
 		2AE55585242B1A01008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AE555A1242B7643008A6D81 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		2AE555A3242B884B008A6D81 /* AsyncImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncImageView.swift; sourceTree = "<group>"; };
@@ -243,7 +245,6 @@
 			children = (
 				2AE555A9242CB636008A6D81 /* CartTests */,
 				9BBDDE02242B600600D810AD /* HomeSceneTests */,
-				2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */,
 				2AE555AA242CB64C008A6D81 /* CartManagerTest.swift */,
 				9BDC1965242CB59E009908D8 /* APIManagerTests.swift */,
 				2AE55585242B1A01008A6D81 /* Info.plist */,
@@ -263,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				9BB46D22242E162200DFCA17 /* CartViewControllerTests.swift */,
+				2AB2FE6A2433518D004860C6 /* CartInteractorTests.swift */,
 			);
 			path = CartTests;
 			sourceTree = "<group>";
@@ -410,6 +412,7 @@
 			children = (
 				9BBDDE03242B604000D810AD /* HomeViewControllerTests.swift */,
 				9BBDDE07242B659000D810AD /* HomePresenterTests.swift */,
+				2AB2FE6624334445004860C6 /* HomeInteractorTests.swift */,
 			);
 			path = HomeSceneTests;
 			sourceTree = "<group>";
@@ -691,8 +694,9 @@
 				9BDC1966242CB59E009908D8 /* APIManagerTests.swift in Sources */,
 				2AE555AB242CB64C008A6D81 /* CartManagerTest.swift in Sources */,
 				9BB46D23242E162200DFCA17 /* CartViewControllerTests.swift in Sources */,
-				2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */,
+				2AB2FE6724334445004860C6 /* HomeInteractorTests.swift in Sources */,
 				9BBDDE04242B604000D810AD /* HomeViewControllerTests.swift in Sources */,
+				2AB2FE6B2433518D004860C6 /* CartInteractorTests.swift in Sources */,
 				9BBDDE08242B659000D810AD /* HomePresenterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
