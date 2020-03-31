@@ -33,6 +33,7 @@ class CartItemCell: UITableViewCell {
         stepper.value = Double(rent)
         rentalValueLabel.text = "\(rent)"
         rentalDaysLabel.text = "Number of Days"
+        errorLabel.isHidden = !movie.isOutOfStock
         self.rentUpdater = rentUpdater
     }
     

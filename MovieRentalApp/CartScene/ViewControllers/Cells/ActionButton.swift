@@ -24,6 +24,14 @@ class ActionButton: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    var isEnabled: Bool {
+        get { return button.isEnabled }
+        set {
+            button.isEnabled = newValue
+            alpha = newValue ? 1 : 0.5
+        }
+    }
+    
     func setTitle(_ title: String?, for state: UIControl.State) {
         button.setTitle(title, for: state)
     }

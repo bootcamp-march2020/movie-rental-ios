@@ -45,13 +45,20 @@ class JSONManager {
         return try JSONSerialization.data(withJSONObject: jsonObject, options: [])
     }
     
+    func getOrderApiRequestBody(moviesList: [CheckoutMovie], address: String) throws -> Data {
+        let cartItemList = moviesList.map { ["movieId": $0.mid, "numberOfDays": $0.numberOfDays] }
+        let jsonObject: [String : Any] = ["cartItemList" : cartItemList, "address": address]
+        return try JSONSerialization.data(withJSONObject: jsonObject, options: [])
+    }
+    
     func parseCheckoutMovies(from obj: Any) throws -> CheckoutMoviesSceneModel {
         guard let json = obj as? [String: Any] else { throw JSONError.ResponseFormatError }
+        let outOfStockMovieList: [Int] = json["outOfStockMovieIds"] as? [Int] ?? []
         guard let totalCost = json["totalCost"] as? Double else {
             throw JSONError.ResponseFormatError
         }
         guard let cartItemLists = json["cartItemList"] as? [[String: Any]] else { throw JSONError.ResponseFormatError }
-        let checkOutMovieSceneModel = CheckoutMoviesSceneModel.init(moviesList: cartItemLists.map { parseCheckoutMovie(from: $0) }, totalCost: totalCost)
+        let checkOutMovieSceneModel = CheckoutMoviesSceneModel.init(moviesList: cartItemLists.map { parseCheckoutMovie(from: $0) }, totalCost: totalCost, outOfStockMovies: outOfStockMovieList)
         return checkOutMovieSceneModel
     }
     

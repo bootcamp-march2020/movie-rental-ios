@@ -20,16 +20,24 @@ class CartPresenter: CartPresenterProtocol {
             switch result {
             case let .success(checkoutMovies):
                 var checkoutMovieModel = checkoutMovies
-                var cMovies = checkoutMovieModel.moviesList
-                (0 ..< cMovies.count).forEach { index in
-                    if let movie = items.first(where: { $0.id == cMovies[index].mid }) {
-                        cMovies[index].posterUrl = movie.posterUrlString
-                        cMovies[index].pricingModel = movie.pricing
+                if !checkoutMovieModel.outOfStockMovies.isEmpty {
+                    let outOfStockMovies = checkoutMovieModel.outOfStockMovies
+                    CartManager.shared.updateOutOfStockMovies(movieIds: outOfStockMovies)
+                    DispatchQueue.main.async {
+                        self.viewController?.showAlert()
                     }
-                }
-                checkoutMovieModel.moviesList = cMovies
-                DispatchQueue.main.async {
-                    self.viewController?.showCheckout(for: checkoutMovieModel)
+                } else {
+                    var cMovies = checkoutMovieModel.moviesList
+                    (0 ..< cMovies.count).forEach { index in
+                        if let movie = items.first(where: { $0.id == cMovies[index].mid }) {
+                            cMovies[index].posterUrl = movie.posterUrlString
+                            cMovies[index].pricingModel = movie.pricing
+                        }
+                    }
+                    checkoutMovieModel.moviesList = cMovies
+                    DispatchQueue.main.async {
+                        self.viewController?.showCheckout(for: checkoutMovieModel)
+                    }
                 }
                 
             case let .failure(error):

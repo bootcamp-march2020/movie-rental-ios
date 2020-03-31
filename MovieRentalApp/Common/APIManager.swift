@@ -49,6 +49,7 @@ class APIManager {
                 return
             }
             
+            print("RES - ", String.init(data: data, encoding: .utf8) ?? "nil")
             completion(.success(data))
         }.resume()
     }
@@ -86,7 +87,7 @@ class APIManager {
             let message = jsonObj["message"] as? String
         else { throw ResponseError.UnknownResponseFormat }
         
-        guard code == 200 else { throw ResponseError(code: code, message: message) }
+        guard (code >= 200 && code < 300) else { throw ResponseError(code: code, message: message) }
         
         guard let payload = jsonObj["payload"] else { throw ResponseError.UnknownResponseFormat }
         
@@ -115,4 +116,8 @@ class APIManager {
         makeServerCall(checkoutUrl, method: .POST, body: bodyData, completion: completion)
     }
     
+    func placeOrder(bodyData: Data, completion: @escaping ServerResponseCompletionHandler) {
+        let checkoutUrl = CONFIG.BASE_URL + "/placeorder"
+        makeServerCall(checkoutUrl, method: .POST, body: bodyData, completion: completion)
+    }
 }

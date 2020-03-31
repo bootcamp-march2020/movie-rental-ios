@@ -9,7 +9,7 @@
 import UIKit
 
 class CartViewController: UIViewController, CartViewControllerProtocol {
-
+    
     private let kCellId = "itemsCell"
     private let cartManager: CartManagerProtocol
     
@@ -46,6 +46,8 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(handleCancelAction))
         
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCartItemsDidChange(_:)), name: CartItemDidChangeNotification, object: nil)
+        
         setupViews()
         setupConstraints()
     }
@@ -58,10 +60,13 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
         loading ? checkOutButton.showLoading() : checkOutButton.stopLoading()
     }
     
+    func showAlert() {
+        showSimpleAlert(message: "Some of the items are Out of Stock. Please edit cart to continue.")
+    }
+    
     func showCheckout(for checkoutMovieModel: CheckoutMoviesSceneModel) {
         guard let controller = CheckoutViewController.init(checkoutSceneModel: checkoutMovieModel) else {
-            let alert = UIAlertController(title: "Invalid Checkout!", message: "No checkout items to proceed", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            showSimpleAlert(with: "Invalid Checkout!", message: "No checkout items to proceed")
             return
         }
         navigationController?.pushViewController(controller, animated: true)
@@ -74,6 +79,10 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
     
     @objc private func handleCheckoutAction() {
         presenter.handleCartCheckout(for: moviesInCart, rentalDict: rentalDict)
+    }
+    
+    @objc private func handleCartItemsDidChange(_ notification: Notification) {
+        tableView.reloadData()
     }
     
     //MARK: Views and Constraints
@@ -147,4 +156,15 @@ extension CartViewController: UITableViewDelegate {
         }
     }
     
+}
+
+
+extension UIViewController {
+    func showSimpleAlert(with title: String = "Oops!", message: String = "Something went wrong!", completion: (()->())? = nil) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: { _ in completion?() }))
+            self.present(alert, animated: true)
+        }
+    }
 }

@@ -11,4 +11,5 @@ import Foundation
 struct CheckoutMoviesSceneModel {
     var moviesList: [CheckoutMovie]
     let totalCost: Double
+    let outOfStockMovies: [Int]
 }

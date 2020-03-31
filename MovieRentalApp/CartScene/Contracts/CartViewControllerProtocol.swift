@@ -10,5 +10,6 @@ import Foundation
 
 protocol CartViewControllerProtocol: ClassProtocol {
     func showLoading(_ loading: Bool)
+    func showAlert()
     func showCheckout(for checkoutMovieModel: CheckoutMoviesSceneModel)
 }

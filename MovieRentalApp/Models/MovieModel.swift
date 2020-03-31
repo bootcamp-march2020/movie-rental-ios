@@ -14,9 +14,16 @@ struct MovieModel: Equatable {
     let posterUrlString: String
     let ratings: Double
     let pricing: PricingModel
+    var isOutOfStock: Bool = false
     
     static func ==(lhs: MovieModel, rhs: MovieModel) -> Bool {
         return lhs.id == rhs.id
+    }
+    
+    func updateOutOfStock(value: Bool) -> MovieModel {
+        var copy = self
+        copy.isOutOfStock = value
+        return copy
     }
 }
 

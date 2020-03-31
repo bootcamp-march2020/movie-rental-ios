@@ -8,15 +8,16 @@
 
 import UIKit
 
-class CheckoutViewController: UIViewController {
+class CheckoutViewController: UIViewController, UITextViewDelegate, CheckoutViewControllerProtocol {
     
     private let cellId = "CheckoutMovieCell"
-    
+    lazy var presenter: CheckoutPresenter = CheckoutPresenter()
     private var checkOutMovies: [CheckoutMovie] = []
     
     init?(checkoutSceneModel: CheckoutMoviesSceneModel) {
         if checkoutSceneModel.moviesList.isEmpty { return nil }
         self.checkOutMovies = checkoutSceneModel.moviesList
+        
         super.init(nibName: nil, bundle: nil)
         self.totalPriceLabel.text = "$ \(checkoutSceneModel.totalCost)"
     }
@@ -25,17 +26,26 @@ class CheckoutViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override var inputAccessoryView: UIView? {
+        return inputBarComponent
+    }
+    
     private lazy var listView: UITableView = {
         let tableView = UITableView.init()
-        addressView.frame = CGRect(x: 0, y: 0, width: 200, height: 120)
-        tableView.tableFooterView = addressView
-        tableView.keyboardDismissMode = .interactive
         tableView.isScrollEnabled = true
+        tableView.contentInset.bottom = 250
+        tableView.allowsSelection = false
         tableView.rowHeight = 125
         tableView.backgroundColor = UIColor.white
         tableView.dataSource = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.keyboardDismissMode = .onDrag
         tableView.register(CartItemCell.self, forCellReuseIdentifier: cellId)
+        tableView.tableFooterView = UIView()
         return tableView
     }()
     
@@ -58,82 +68,95 @@ class CheckoutViewController: UIViewController {
         return totalLabel
     }()
     
-    private lazy var confirmButton: UIButton = {
-        let view = UIButton(type: .roundedRect)
+    private lazy var confirmButton: ActionButton = {
+        let view = ActionButton()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.setConstantHeight(38)
-        view.setConstantWidth(120)
-        view.backgroundColor = .systemBlue
-        view.setTitleColor(.white, for: .normal)
+        view.setConstantWidth(110)
         view.setTitle("Confirm", for: .normal)
-        view.titleLabel?.font = .systemFont(ofSize: 17, weight: .semibold)
-        view.layer.cornerRadius = 19
-        view.layer.masksToBounds = true
-        view.titleEdgeInsets = .init(top: 12, left: 20, bottom: 12, right: 20)
+        view.addTarget(self, action: #selector(handleConfirmAction), for: .touchUpInside)
         return view
     }()
     
     private lazy var addressView: AddressComponentView = {
         let addressView = AddressComponentView.init()
+        addressView.textView.delegate = self
         addressView.placeHolderLabel.text = "Address"
         addressView.backgroundColor = UIColor.init(white: 0.92, alpha: 1)
         addressView.layer.cornerRadius = 8
-        addressView.isHidden = true
-        // addressView.translatesAutoresizingMaskIntoConstraints = false
+        addressView.translatesAutoresizingMaskIntoConstraints = false
         return addressView
+    }()
+    
+    private lazy var inputBarComponent: UIView = {
+        let view = UIView.init(frame: CGRect(x: 0, y: 0, width: 200, height: 250))
+        view.backgroundColor = .white
+        [addressView, confirmButton, totalLabel, totalPriceLabel].forEach { view.addSubview($0) }
+        addressView.anchorTop()
+        addressView.fillSuperViewWidth(padding: 10, safeLayout: false)
+        
+        totalPriceLabel.anchorTrailing(padding: -10)
+        totalPriceLabel.placeBelow(view: addressView, padding: 10)
+        
+        totalLabel.placeBeforeTo(view: totalPriceLabel, padding: -10)
+        totalLabel.alignVerticallyCenter(with: totalPriceLabel)
+        
+        confirmButton.anchorBottom(padding: -20)
+        confirmButton.anchorTrailing(padding: -10)
+        confirmButton.placeBelow(view: totalPriceLabel, padding: 10)
+        return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         view.backgroundColor = .white
         title = "Checkout"
         navigationController?.navigationBar.prefersLargeTitles = true
+        presenter.viewController = self
         self.setUpView()
         self.setViewConstraints()
         self.listView.reloadData()
+        updateConfirmButton()
     }
     
     private func setUpView() {
         self.view.addSubview(listView)
-//        self.view.addSubview(addressView)
-        self.view.addSubview(totalLabel)
-        self.view.addSubview(totalPriceLabel)
-        self.view.addSubview(confirmButton)
     }
     
     private func setViewConstraints() {
         self.listView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 5).isActive = true
         self.listView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -5).isActive = true
         self.listView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 10).isActive = true
-        self.confirmButton.topAnchor.constraint(equalTo: self.listView.bottomAnchor, constant: 10).isActive = true
-//        self.addressView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15).isActive = true
-//        self.addressView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
-//        self.addressView.topAnchor.constraint(equalTo: self.listView.bottomAnchor, constant: 10).isActive = true
-//        self.addressView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        self.addressView.bottomAnchor.constraint(equalTo: self.totalLabel.topAnchor, constant: -25).isActive = true
-        self.confirmButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -10).isActive = true
-        self.confirmButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
-        self.totalPriceLabel.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15).isActive = true
-        self.totalPriceLabel.bottomAnchor.constraint(equalTo: self.confirmButton.topAnchor, constant: -10).isActive = true
-        self.totalPriceLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.totalLabel.trailingAnchor.constraint(equalTo: self.totalPriceLabel.leadingAnchor, constant: -20).isActive = true
-        self.totalLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.totalLabel.bottomAnchor.constraint(equalTo: self.totalPriceLabel.bottomAnchor).isActive = true
+        self.listView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
     }
     
-    @objc func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-//            self.view.frame.origin.y -= keyboardSize.height
-            listView.contentOffset.y += keyboardSize.height
+    fileprivate func updateConfirmButton() {
+        confirmButton.isEnabled = !addressView.textView.text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).isEmpty
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        updateConfirmButton()
+    }
+    
+    @objc private func handleConfirmAction() {
+        presenter.placeOrder(movies: checkOutMovies, address: addressView.textView.text ?? "")
+    }
+    
+    func showSuccessScreen() {
+        self.showSimpleAlert(with: "Success", message: "Order successfully placed!") {
+            self.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
-
-    @objc func keyboardWillHide(notification: NSNotification) {
-        self.view.frame.origin.y = 0
+    
+    func showCartWithOutOfStockMovies(_ movieIds: [Int]) {
+        showSimpleAlert(with: "Oops!", message: "Cart has some Out of Stock items. Please edit cart to continue.") {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
+    func showError(message: String) {
+        showSimpleAlert(with: "Oops!", message: message)
+    }
     
 }
  

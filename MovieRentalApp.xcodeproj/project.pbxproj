@@ -12,6 +12,8 @@
 		2A9319F2242DE50D00063EED /* CheckoutMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9319F1242DE50D00063EED /* CheckoutMovie.swift */; };
 		2A9319F4242DE5FD00063EED /* AddressComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9319F3242DE5FD00063EED /* AddressComponentView.swift */; };
 		2AB2FE602431BC30004860C6 /* CheckoutMoviesSceneModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE5F2431BC30004860C6 /* CheckoutMoviesSceneModel.swift */; };
+		2AB2FE632432083C004860C6 /* CheckoutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE622432083C004860C6 /* CheckoutInteractor.swift */; };
+		2AB2FE6524320F93004860C6 /* CheckoutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */; };
 		2AE5556D242B19FF008A6D81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5556C242B19FF008A6D81 /* AppDelegate.swift */; };
 		2AE55571242B19FF008A6D81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55570242B19FF008A6D81 /* ViewController.swift */; };
 		2AE55576242B1A00008A6D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55575242B1A00008A6D81 /* Assets.xcassets */; };
@@ -72,6 +74,8 @@
 		2A9319F1242DE50D00063EED /* CheckoutMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutMovie.swift; sourceTree = "<group>"; };
 		2A9319F3242DE5FD00063EED /* AddressComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressComponentView.swift; sourceTree = "<group>"; };
 		2AB2FE5F2431BC30004860C6 /* CheckoutMoviesSceneModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutMoviesSceneModel.swift; sourceTree = "<group>"; };
+		2AB2FE622432083C004860C6 /* CheckoutInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutInteractor.swift; sourceTree = "<group>"; };
+		2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutPresenter.swift; sourceTree = "<group>"; };
 		2AE55569242B19FF008A6D81 /* MovieRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE5556C242B19FF008A6D81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2AE55570242B19FF008A6D81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 		2A9319E9242DE36300063EED /* CheckoutScene */ = {
 			isa = PBXGroup;
 			children = (
+				2AB2FE6124320827004860C6 /* Interactor */,
 				2A9319F0242DE50200063EED /* Model */,
 				2A9319EC242DE45E00063EED /* ViewController */,
 			);
@@ -180,6 +185,15 @@
 				2AB2FE5F2431BC30004860C6 /* CheckoutMoviesSceneModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2AB2FE6124320827004860C6 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				2AB2FE622432083C004860C6 /* CheckoutInteractor.swift */,
+				2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		2AE55560242B19FF008A6D81 = {
@@ -622,8 +636,10 @@
 				9BBDDDF5242B5D5300D810AD /* APIManager.swift in Sources */,
 				9BBDDDF7242B5D5E00D810AD /* JSONManager.swift in Sources */,
 				9BB46D1B242E093A00DFCA17 /* CartViewControllerProtocol.swift in Sources */,
+				2AB2FE632432083C004860C6 /* CheckoutInteractor.swift in Sources */,
 				9BDC196B242CC3D6009908D8 /* UserProfileController.swift in Sources */,
 				9BDC1967242CC399009908D8 /* SessionUtils.swift in Sources */,
+				2AB2FE6524320F93004860C6 /* CheckoutPresenter.swift in Sources */,
 				2AE555A6242CB4B3008A6D81 /* CartManagerProtocol.swift in Sources */,
 				9BBDDDFC242B5DA100D810AD /* HomePresenter.swift in Sources */,
 				9BDC196C242CC3E1009908D8 /* Extensions.swift in Sources */,

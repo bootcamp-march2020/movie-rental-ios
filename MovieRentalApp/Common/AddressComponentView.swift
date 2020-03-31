@@ -19,13 +19,14 @@ class AddressComponentView: UIView {
         return label
     }()
     
-    lazy var addressView: UITextView = {
+    lazy var textView: UITextView = {
         let textView = UITextView()
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textAlignment = NSTextAlignment.left
         textView.textColor = UIColor.black
         textView.font = UIFont.systemFont(ofSize: 12, weight: UIFont.Weight.medium)
         textView.backgroundColor = UIColor.white
+        textView.text = ""
         return textView
     }()
     
@@ -41,17 +42,17 @@ class AddressComponentView: UIView {
     
     private func setUpView() {
         addSubview(placeHolderLabel)
-        addSubview(addressView)
+        addSubview(textView)
     }
     
     private func setUpContraints() {
         self.placeHolderLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8).isActive = true
         self.placeHolderLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
         self.placeHolderLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        self.addressView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
-        self.addressView.topAnchor.constraint(equalTo: self.placeHolderLabel.bottomAnchor, constant: 8).isActive = true
-        self.addressView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
-        self.addressView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        self.textView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
+        self.textView.topAnchor.constraint(equalTo: self.placeHolderLabel.bottomAnchor, constant: 8).isActive = true
+        self.textView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+        self.textView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
     }
     
 }

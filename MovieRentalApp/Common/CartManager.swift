@@ -15,20 +15,32 @@ class CartManager: CartManagerProtocol {
     static let shared = CartManager()
     
     weak var valueUpdater: CartValueUpdator?
-    var moviesInCart: [MovieModel] = []
+    var moviesInCart: [MovieModel] = [] {
+        didSet {
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: CartItemDidChangeNotification, object: nil)
+                self.valueUpdater?.showCartCount(self.moviesInCart.count)
+            }
+        }
+    }
     
     func addMovie(movie: MovieModel) {
         moviesInCart.append(movie)
-        valueUpdater?.showCartCount(moviesInCart.count)
-        NotificationCenter.default.post(name: CartItemDidChangeNotification, object: nil)
     }
     
     func removeMovie(movie: MovieModel) {
         moviesInCart.removeAll { (movieModel) -> Bool in
             movie.id == movieModel.id
         }
-        valueUpdater?.showCartCount(moviesInCart.count)
-        NotificationCenter.default.post(name: CartItemDidChangeNotification, object: nil)
+    }
+    
+    func updateOutOfStockMovies(movieIds: [Int]) {
+        moviesInCart = moviesInCart.map({ (movie) -> MovieModel in
+            if movieIds.contains(movie.id) {
+                return movie.updateOutOfStock(value: true)
+            }
+            return movie
+        })
     }
     
 }
