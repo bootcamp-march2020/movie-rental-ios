@@ -55,7 +55,7 @@ class HomeViewControllerTests: XCTestCase {
 
 class MockHomePresenter: HomePresenterProtocol {
     
-    func manageViewLoaded() {
+    func getMoviesList() {
         
     }
     

@@ -50,6 +50,8 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
         
         setupViews()
         setupConstraints()
+        
+        updateCheckoutButton()
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -74,7 +76,7 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
     
     //MARK: Actions
     @objc private func handleCancelAction() {
-        dismiss(animated: true)
+        presentingViewController?.dismiss(animated: true)
     }
     
     @objc private func handleCheckoutAction() {
@@ -83,6 +85,12 @@ class CartViewController: UIViewController, CartViewControllerProtocol {
     
     @objc private func handleCartItemsDidChange(_ notification: Notification) {
         tableView.reloadData()
+        updateCheckoutButton()
+    }
+    
+    //MARK: Private Methods
+    private func updateCheckoutButton() {
+        checkOutButton.isEnabled = moviesInCart.first { $0.isOutOfStock } == nil
     }
     
     //MARK: Views and Constraints
@@ -148,7 +156,9 @@ extension CartViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            cartManager.removeMovie(movie: moviesInCart[indexPath.row])
+            let movie = moviesInCart[indexPath.row]
+            cartManager.removeMovie(movie: movie)
+            rentalDict.removeValue(forKey: movie.id)
             tableView.deleteRows(at: [indexPath], with: .automatic)
             if moviesInCart.isEmpty {
                 dismiss(animated: true)

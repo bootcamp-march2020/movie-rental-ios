@@ -48,6 +48,15 @@ class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationBar.prefersLargeTitles = true
+        navigationBar.isTranslucent = false
+        view.backgroundColor = .white
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        if let homeController = viewControllers.first as? HomeViewController {
+            homeController.refreshMovieList()
+        }
     }
     
     func setupNavigationItems(for item: UINavigationItem) {

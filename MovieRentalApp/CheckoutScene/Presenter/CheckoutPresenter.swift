@@ -12,6 +12,7 @@ protocol CheckoutViewControllerProtocol: ClassProtocol {
     func showSuccessScreen()
     func showCartWithOutOfStockMovies(_ movieIds: [Int])
     func showError(message: String)
+    func showLoading(_ loading: Bool)
 }
 
 class CheckoutPresenter {
@@ -20,7 +21,9 @@ class CheckoutPresenter {
     lazy var interactor: CheckoutInteractorProtocol = CheckoutInteractor()
     
     func placeOrder(movies: [CheckoutMovie], address: String) {
+        viewController?.showLoading(true)
         interactor.placeOrder(movieList: movies, address: address) { result in
+            self.viewController?.showLoading(false)
             switch result {
             case .success(_):
                 CartManager.shared.moviesInCart.removeAll()

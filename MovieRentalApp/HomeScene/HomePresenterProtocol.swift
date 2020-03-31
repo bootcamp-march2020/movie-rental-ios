@@ -9,5 +9,5 @@
 import Foundation
 
 protocol HomePresenterProtocol: ClassProtocol {
-    func manageViewLoaded()
+    func getMoviesList()
 }

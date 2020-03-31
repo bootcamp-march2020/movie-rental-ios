@@ -13,7 +13,7 @@ class HomePresenter: HomePresenterProtocol {
     weak var viewController: HomeViewControllerProtocol?
     lazy var interactor: HomeInteractorProtocol = HomeInteractor()
     
-    public func manageViewLoaded() {
+    public func getMoviesList() {
         getMovieList()
     }
     

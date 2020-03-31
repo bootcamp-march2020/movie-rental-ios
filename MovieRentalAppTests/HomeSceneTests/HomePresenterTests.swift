@@ -24,7 +24,7 @@ class HomePresenterTests: XCTestCase {
     }
     
     func testManageViewLoader() {
-        presenter.manageViewLoaded()
+        presenter.getMoviesList()
     }
     
 }

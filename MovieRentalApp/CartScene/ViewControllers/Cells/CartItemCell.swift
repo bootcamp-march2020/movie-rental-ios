@@ -33,7 +33,7 @@ class CartItemCell: UITableViewCell {
         stepper.value = Double(rent)
         rentalValueLabel.text = "\(rent)"
         rentalDaysLabel.text = "Number of Days"
-        errorLabel.isHidden = !movie.isOutOfStock
+        self.manageOutOfStock(movie.isOutOfStock)
         self.rentUpdater = rentUpdater
     }
     
@@ -52,6 +52,13 @@ class CartItemCell: UITableViewCell {
             pricingTypeLabel.text = pricingModel.name
             pricingLabel.text = pricingModel.formattedPricing
         }
+    }
+    
+    private func manageOutOfStock(_ value: Bool) {
+        errorLabel.isHidden = !value
+        stepper.isHidden = value
+        rentalValueLabel.isHidden = value
+        rentalDaysLabel.isHidden = value
     }
     
     @objc private func handleStepperValueChange() {

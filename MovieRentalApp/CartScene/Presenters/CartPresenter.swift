@@ -21,8 +21,6 @@ class CartPresenter: CartPresenterProtocol {
             case let .success(checkoutMovies):
                 var checkoutMovieModel = checkoutMovies
                 if !checkoutMovieModel.outOfStockMovies.isEmpty {
-                    let outOfStockMovies = checkoutMovieModel.outOfStockMovies
-                    CartManager.shared.updateOutOfStockMovies(movieIds: outOfStockMovies)
                     DispatchQueue.main.async {
                         self.viewController?.showAlert()
                     }

@@ -143,8 +143,8 @@ class CheckoutViewController: UIViewController, UITextViewDelegate, CheckoutView
     }
     
     func showSuccessScreen() {
-        self.showSimpleAlert(with: "Success", message: "Order successfully placed!") {
-            self.navigationController?.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.navigationController?.pushViewController(ConfirmViewController(), animated: true)
         }
     }
     
@@ -152,6 +152,10 @@ class CheckoutViewController: UIViewController, UITextViewDelegate, CheckoutView
         showSimpleAlert(with: "Oops!", message: "Cart has some Out of Stock items. Please edit cart to continue.") {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    func showLoading(_ loading: Bool) {
+        loading ? confirmButton.showLoading() : confirmButton.stopLoading()
     }
     
     func showError(message: String) {

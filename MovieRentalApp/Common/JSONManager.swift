@@ -53,7 +53,7 @@ class JSONManager {
     
     func parseCheckoutMovies(from obj: Any) throws -> CheckoutMoviesSceneModel {
         guard let json = obj as? [String: Any] else { throw JSONError.ResponseFormatError }
-        let outOfStockMovieList: [Int] = json["outOfStockMovieIds"] as? [Int] ?? []
+        let outOfStockMovieList: [Int] = json["outOfStockMoviesIds"] as? [Int] ?? []
         guard let totalCost = json["totalCost"] as? Double else {
             throw JSONError.ResponseFormatError
         }

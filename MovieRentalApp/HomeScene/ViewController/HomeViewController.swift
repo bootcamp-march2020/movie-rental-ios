@@ -32,7 +32,11 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         setupViews()
         setupConstraints()
         (presenter as? HomePresenter)?.viewController = self
-        presenter.manageViewLoaded()
+        presenter.getMoviesList()
+    }
+    
+    func refreshMovieList() {
+        presenter.getMoviesList()
     }
     
     //MARK: ViewController Protocol Methods
@@ -40,13 +44,15 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
     
     func populateMovies(_ movies: [MovieModel]) {
         self.movies = movies
-        self.collectionView.reloadData()
-        self.collectionView.isHidden = false
+        collectionView.reloadData()
+        collectionView.isHidden = false
+        collectionView.backgroundView = movies.isEmpty ? placeholderLabel : nil
+        collectionView.refreshControl?.endRefreshing()
     }
     
     func showError(_ error: Error) {
         collectionView.isHidden = true
-        placeholderLabel.text = String(describing: error)
+        errorLabel.text = String(describing: error)
     }
     
     //MARK: Actions
@@ -54,13 +60,27 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         DispatchQueue.main.async { self.collectionView.reloadData() }
     }
     
+    @objc func handleRefreshAction() {
+        refreshMovieList()
+    }
+    
     //MARK: Views and Constraints
+    private (set) lazy var errorLabel: UILabel = {
+        let view = UILabel()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.numberOfLines = 0
+        view.textAlignment = .center
+        view.textColor = .systemRed
+        return view
+    }()
+    
     private (set) lazy var placeholderLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.numberOfLines = 0
-        view.textColor = .red
         view.textAlignment = .center
+        view.text = "No Movies"
+        view.font = .systemFont(ofSize: 22, weight: .medium)
         return view
     }()
     
@@ -75,21 +95,20 @@ class HomeViewController: UIViewController, HomeViewControllerProtocol {
         view.backgroundColor = .white
         view.register(MovieCell.self, forCellWithReuseIdentifier: kCellId)
         view.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefreshAction), for: .valueChanged)
+        view.refreshControl = refreshControl
         return view
     }()
     
     private func setupViews() {
         view.addSubview(collectionView)
-        view.addSubview(placeholderLabel)
-    }
-    
-    @objc func openCart() {
-        
+        view.addSubview(errorLabel)
     }
     
     private func setupConstraints() {
-        placeholderLabel.fillSuperViewWidth(padding: 24)
-        placeholderLabel.alignCenter()
+        errorLabel.fillSuperViewWidth(padding: 24)
+        errorLabel.alignCenter()
         
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true

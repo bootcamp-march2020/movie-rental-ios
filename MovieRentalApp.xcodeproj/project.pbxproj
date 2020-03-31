@@ -15,7 +15,6 @@
 		2AB2FE632432083C004860C6 /* CheckoutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE622432083C004860C6 /* CheckoutInteractor.swift */; };
 		2AB2FE6524320F93004860C6 /* CheckoutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */; };
 		2AE5556D242B19FF008A6D81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE5556C242B19FF008A6D81 /* AppDelegate.swift */; };
-		2AE55571242B19FF008A6D81 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55570242B19FF008A6D81 /* ViewController.swift */; };
 		2AE55576242B1A00008A6D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55575242B1A00008A6D81 /* Assets.xcassets */; };
 		2AE55579242B1A00008A6D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE55577242B1A00008A6D81 /* LaunchScreen.storyboard */; };
 		2AE55584242B1A00008A6D81 /* MovieRentalAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE55583242B1A00008A6D81 /* MovieRentalAppTests.swift */; };
@@ -24,6 +23,7 @@
 		2AE555A8242CB56C008A6D81 /* CartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555A7242CB56C008A6D81 /* CartManager.swift */; };
 		2AE555AB242CB64C008A6D81 /* CartPresenterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555AA242CB64C008A6D81 /* CartPresenterTest.swift */; };
 		2AE555AD242DCCC3008A6D81 /* HomeCartIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE555AC242DCCC3008A6D81 /* HomeCartIconView.swift */; };
+		9B5DA5152432FECF00C2D230 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5DA5142432FECF00C2D230 /* ConfirmViewController.swift */; };
 		9BB46D11242DE3A600DFCA17 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB46D10242DE3A600DFCA17 /* CartViewController.swift */; };
 		9BB46D14242DE4C000DFCA17 /* CartItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB46D13242DE4C000DFCA17 /* CartItemCell.swift */; };
 		9BB46D18242E05FF00DFCA17 /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB46D17242E05FF00DFCA17 /* CartPresenter.swift */; };
@@ -78,7 +78,6 @@
 		2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutPresenter.swift; sourceTree = "<group>"; };
 		2AE55569242B19FF008A6D81 /* MovieRentalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieRentalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AE5556C242B19FF008A6D81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2AE55570242B19FF008A6D81 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2AE55575242B1A00008A6D81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2AE55578242B1A00008A6D81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2AE5557A242B1A00008A6D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		2AE555A7242CB56C008A6D81 /* CartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartManager.swift; sourceTree = "<group>"; };
 		2AE555AA242CB64C008A6D81 /* CartPresenterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenterTest.swift; sourceTree = "<group>"; };
 		2AE555AC242DCCC3008A6D81 /* HomeCartIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCartIconView.swift; sourceTree = "<group>"; };
+		9B5DA5142432FECF00C2D230 /* ConfirmViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		9BB46D10242DE3A600DFCA17 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		9BB46D13242DE4C000DFCA17 /* CartItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemCell.swift; sourceTree = "<group>"; };
 		9BB46D17242E05FF00DFCA17 /* CartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenter.swift; sourceTree = "<group>"; };
@@ -163,6 +163,7 @@
 		2A9319E9242DE36300063EED /* CheckoutScene */ = {
 			isa = PBXGroup;
 			children = (
+				9B5DA51624331F0900C2D230 /* Presenter */,
 				2AB2FE6124320827004860C6 /* Interactor */,
 				2A9319F0242DE50200063EED /* Model */,
 				2A9319EC242DE45E00063EED /* ViewController */,
@@ -191,7 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				2AB2FE622432083C004860C6 /* CheckoutInteractor.swift */,
-				2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -219,18 +219,18 @@
 		2AE5556B242B19FF008A6D81 /* MovieRentalApp */ = {
 			isa = PBXGroup;
 			children = (
-				2A9319E9242DE36300063EED /* CheckoutScene */,
 				9BBDDDF8242B5D7400D810AD /* Models */,
 				9BBDDDF3242B5D4400D810AD /* Common */,
 				9BBDDDF0242B5D2500D810AD /* HomeScene */,
 				9BDC1970242CC41B009908D8 /* LoginScene */,
 				9BCD86F8242CABBE00B6CACB /* UserProfileScene */,
 				9BB46D0E242DE37900DFCA17 /* CartScene */,
+				2A9319E9242DE36300063EED /* CheckoutScene */,
+				9B5DA5132432FEB000C2D230 /* ConfirmScene */,
 				9BCD86F3242C9E2500B6CACB /* Utils */,
 				9BDC1968242CC3C0009908D8 /* RootRouter.swift */,
 				2AE5556C242B19FF008A6D81 /* AppDelegate.swift */,
 				9BCD86F1242C9C0E00B6CACB /* Configuration.swift */,
-				2AE55570242B19FF008A6D81 /* ViewController.swift */,
 				2AE55575242B1A00008A6D81 /* Assets.xcassets */,
 				2AE55577242B1A00008A6D81 /* LaunchScreen.storyboard */,
 				2AE5557A242B1A00008A6D81 /* Info.plist */,
@@ -264,6 +264,22 @@
 				9BB46D22242E162200DFCA17 /* CartViewControllerTests.swift */,
 			);
 			path = CartTests;
+			sourceTree = "<group>";
+		};
+		9B5DA5132432FEB000C2D230 /* ConfirmScene */ = {
+			isa = PBXGroup;
+			children = (
+				9B5DA5142432FECF00C2D230 /* ConfirmViewController.swift */,
+			);
+			path = ConfirmScene;
+			sourceTree = "<group>";
+		};
+		9B5DA51624331F0900C2D230 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				2AB2FE6424320F93004860C6 /* CheckoutPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		9BB46D0E242DE37900DFCA17 /* CartScene */ = {
@@ -622,6 +638,7 @@
 				2A9319F2242DE50D00063EED /* CheckoutMovie.swift in Sources */,
 				9BDC1972242CC41B009908D8 /* LoginViewController.swift in Sources */,
 				9BBDDE06242B620700D810AD /* MovieModel.swift in Sources */,
+				9B5DA5152432FECF00C2D230 /* ConfirmViewController.swift in Sources */,
 				9BBDDDFA242B5D8400D810AD /* HomeViewController.swift in Sources */,
 				9BDC1974242CC451009908D8 /* AsyncImageView.swift in Sources */,
 				9BB46D14242DE4C000DFCA17 /* CartItemCell.swift in Sources */,
@@ -645,7 +662,6 @@
 				9BDC196C242CC3E1009908D8 /* Extensions.swift in Sources */,
 				2A9319F4242DE5FD00063EED /* AddressComponentView.swift in Sources */,
 				9BB46D1D242E09A700DFCA17 /* ActionButton.swift in Sources */,
-				2AE55571242B19FF008A6D81 /* ViewController.swift in Sources */,
 				2AE555AD242DCCC3008A6D81 /* HomeCartIconView.swift in Sources */,
 				9BDC1973242CC446009908D8 /* MovieCell.swift in Sources */,
 				9BB46D18242E05FF00DFCA17 /* CartPresenter.swift in Sources */,

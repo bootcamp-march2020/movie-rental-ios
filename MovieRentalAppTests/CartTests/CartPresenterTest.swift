@@ -30,9 +30,12 @@ class CartPresenterTest: XCTestCase {
 
     func testAddMovie() {
         let movies = MovieModel.dummies(number: 2)
-        for movie in movies {
-            cartManager.addMovie(movie: movie)
-        }
+        let asyncExpectation = expectation(description: "Async block executed")
+        
+        movies.forEach { cartManager.addMovie(movie: $0) }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { asyncExpectation.fulfill() }
+        waitForExpectations(timeout: 1)
         
         XCTAssertFalse(cartIconView.badgeLabel.isHidden)
         XCTAssertEqual(cartIconView.badgeLabel.text, " 2 ")
@@ -41,10 +44,13 @@ class CartPresenterTest: XCTestCase {
     
     func testRemoveMovie() {
         let movies = MovieModel.dummies(number: 10)
-        for movie in movies {
-            cartManager.addMovie(movie: movie)
-        }
+        let asyncExpectation = expectation(description: "Async block executed")
+        
+        movies.forEach { cartManager.addMovie(movie: $0) }
         cartManager.removeMovie(movie: movies.last!)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { asyncExpectation.fulfill() }
+        waitForExpectations(timeout: 1)
         
         XCTAssertEqual(cartIconView.badgeLabel.text, " 9 ")
         XCTAssertEqual(cartManager.moviesInCart.count, 9)

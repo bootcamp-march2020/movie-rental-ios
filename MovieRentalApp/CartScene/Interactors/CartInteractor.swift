@@ -31,6 +31,7 @@ class CartInteractor: CartInteractorProtocol {
                 case let .success(json):
                     do {
                         let checkoutMovies = try self.jsonManager.parseCheckoutMovies(from: json)
+                        CartManager.shared.updateOutOfStockMovies(movieIds: checkoutMovies.outOfStockMovies)
                         completion(.success(checkoutMovies))
                     }
                     catch {

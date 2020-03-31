@@ -41,13 +41,17 @@ class ActionButton: UIView {
     }
     
     func showLoading() {
-        button.isHidden = true
-        activityIndicator.startAnimating()
+        DispatchQueue.main.async {
+            self.button.isHidden = true
+            self.activityIndicator.startAnimating()
+        }
     }
     
     func stopLoading() {
-        button.isHidden = false
-        activityIndicator.stopAnimating()
+        DispatchQueue.main.async {
+            self.button.isHidden = false
+            self.activityIndicator.stopAnimating()
+        }
     }
     
     private (set) lazy var button: UIButton = {
