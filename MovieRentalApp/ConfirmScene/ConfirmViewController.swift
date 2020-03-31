@@ -32,7 +32,7 @@ class ConfirmViewController: UIViewController {
         view.text = """
         Thanks for your order!
         We will send the order delivery in
-        1 week
+        1 week. Check your mailbox for invoice!
         """
         view.textColor = .black
         view.textAlignment = .center

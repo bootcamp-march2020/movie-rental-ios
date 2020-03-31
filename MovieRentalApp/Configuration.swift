@@ -15,4 +15,6 @@ enum Config {
     static let MIN_RENTAL_DAYS = 1
     static let MAX_RENTAL_DAYS = 30
     static let DEFAULT_RENTAL_DAYS = 7
+    
+    static let APP_NAME = "HotFlix"
 }

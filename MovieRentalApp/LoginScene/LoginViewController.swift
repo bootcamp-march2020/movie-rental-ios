@@ -14,7 +14,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.delegate = self
@@ -24,13 +24,23 @@ class LoginViewController: UIViewController {
     }
     
     //MARK: Views and Constraints
+    private lazy var logoImageView: UIImageView = {
+        let view = UIImageView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFit
+        view.clipsToBounds = true
+        view.image = UIImage(named: "logo")
+        return view
+    }()
+    
     private lazy var titleLabel: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.text = "MOVIE\nRENTAL"
+        view.text = Config.APP_NAME
         view.textAlignment = .center
         view.numberOfLines = 2
-        view.font = .systemFont(ofSize: 64, weight: .heavy)
+        view.textColor = UIColor(displayP3Red: 192/256, green: 57/256, blue: 43/256, alpha: 1)
+        view.font = .systemFont(ofSize: 68, weight: .heavy)
         return view
     }()
     
@@ -42,12 +52,17 @@ class LoginViewController: UIViewController {
     }()
     
     private func setupViews() {
+        view.addSubview(logoImageView)
         view.addSubview(titleLabel)
         view.addSubview(signinButton)
     }
     
     private func setupConstraints() {
-        titleLabel.alignCenter()
+        logoImageView.setDimensions(width: 220, height: 220)
+        logoImageView.alignCenter(yPadding: -60)
+        
+        titleLabel.placeBelow(view: logoImageView, padding: 12)
+        titleLabel.alignHorizontallyCenter()
         
         signinButton.alignHorizontallyCenter()
         signinButton.placeBelow(view: titleLabel, padding: 120)
