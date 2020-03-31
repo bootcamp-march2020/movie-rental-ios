@@ -24,7 +24,7 @@ class RootRouter {
         guard let window = window else { return }
         
         func setController() {
-            window.rootViewController = SessionUtils.isUserSignedIn ? NavigationController(rootViewController: HomeViewController()) : LoginViewController()
+            window.rootViewController = SessionManager.shared.isUserSignedIn ? NavigationController(rootViewController: HomeViewController()) : LoginViewController()
         }
         
         if animated {
@@ -62,7 +62,7 @@ class NavigationController: UINavigationController {
     func setupNavigationItems(for item: UINavigationItem) {
         item.leftBarButtonItem = UIBarButtonItem(customView: userImageView)
         item.rightBarButtonItem = UIBarButtonItem(customView: cartImageView)
-        userImageView.loadImage(with: SessionUtils.currentUser.profile.imageURL(withDimension: 32))
+        userImageView.loadImage(with: SessionManager.shared.currentUser.profile.imageURL(withDimension: 32))
     }
     
     @objc private func handleViewProfileAction() {

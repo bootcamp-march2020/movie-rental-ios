@@ -34,7 +34,7 @@ class APIManager {
     
     typealias ServerResponseResult = Result<Any, Error>
     typealias ServerResponseCompletionHandler = (ServerResponseResult)->()
-    var sessionManager: SessionUtilsProtocol.Type = SessionUtils.self
+    var sessionManager: SessionManagerProtocol = SessionManager.shared
     
     func makeAPICall(with request: URLRequest, completion: @escaping (Result<Data, Error>)->()) {
         

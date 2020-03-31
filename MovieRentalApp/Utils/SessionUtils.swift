@@ -1,5 +1,5 @@
 //
-//  SessionUtils.swift
+//  SessionManager.swift
 //  MovieRentalApp
 //
 //  Created by Akaash Dev on 26/03/20.
@@ -8,18 +8,20 @@
 
 import GoogleSignIn
 
-protocol SessionUtilsProtocol {
-    static var isUserSignedIn: Bool { get }
-    static func getAccessToken() -> String?
+protocol SessionManagerProtocol {
+    var isUserSignedIn: Bool { get }
+    func getAccessToken() -> String?
 }
 
-class SessionUtils: SessionUtilsProtocol {
+class SessionManager: SessionManagerProtocol {
     
-    static var isUserSignedIn: Bool {
+    static let shared = SessionManager()
+    
+    var isUserSignedIn: Bool {
         return GIDSignIn.sharedInstance()?.currentUser != nil
     }
     
-    static var currentUser: GIDGoogleUser {
+    var currentUser: GIDGoogleUser {
         guard let user = GIDSignIn.sharedInstance()?.currentUser else {
             RootRouter.shared.setRootViewController(animated: true)
             return GIDGoogleUser()
@@ -27,17 +29,17 @@ class SessionUtils: SessionUtilsProtocol {
         return user
     }
     
-    static func initialize() {
-        GIDSignIn.sharedInstance()?.clientID = CONFIG.CLIENT_ID
+    func initialize() {
+        GIDSignIn.sharedInstance()?.clientID = Config.CLIENT_ID
         GIDSignIn.sharedInstance()?.restorePreviousSignIn()
     }
     
-    static func getAccessToken() -> String? {
+    func getAccessToken() -> String? {
         guard isUserSignedIn else { return nil }
         return currentUser.authentication.idToken
     }
     
-    static func handleSignOut() {
+    func handleSignOut() {
         GIDSignIn.sharedInstance()?.signOut()
         RootRouter.shared.setRootViewController(animated: true)
     }

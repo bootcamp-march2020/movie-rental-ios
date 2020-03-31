@@ -40,7 +40,7 @@ class APIManagerTests: XCTestCase {
     }
     
     func testMakeServerCallWithInvalidUserSession() {
-        apiManager.sessionManager = InvalidSessionUtils.self
+        apiManager.sessionManager = InvalidSessionManager()
         let asyncExpectation = expectation(description: "Async block executed")
         
         apiManager.makeServerCall("https://www.google.com/") { result in
@@ -61,7 +61,7 @@ class APIManagerTests: XCTestCase {
     }
     
     func testGetServerURLRequestWithDummySession() {
-        apiManager.sessionManager = DummySessionUtils.self
+        apiManager.sessionManager = DummySessionManager()
         let url = URL(string: "https://www.google.com/")!
         let method: HTTPMethod = .POST
         
@@ -116,22 +116,22 @@ class APIManagerTests: XCTestCase {
     
 }
 
-class InvalidSessionUtils: SessionUtilsProtocol {
-    static var isUserSignedIn: Bool {
+class InvalidSessionManager: SessionManagerProtocol {
+    var isUserSignedIn: Bool {
         return false
     }
     
-    static func getAccessToken() -> String? {
+    func getAccessToken() -> String? {
         return nil
     }
 }
 
-class DummySessionUtils: SessionUtilsProtocol {
-    static var isUserSignedIn: Bool {
+class DummySessionManager: SessionManagerProtocol {
+    var isUserSignedIn: Bool {
         return true
     }
     
-    static func getAccessToken() -> String? {
+    func getAccessToken() -> String? {
         return "access-token"
     }
 }

@@ -22,14 +22,14 @@ class UserProfileController: UIViewController {
     }
     
     private func setupUserDetails() {
-        guard let profile = SessionUtils.currentUser.profile else { return }
+        guard let profile = SessionManager.shared.currentUser.profile else { return }
         imageView.loadImage(with: profile.imageURL(withDimension: 150))
         nameLabel.text = profile.name
         emailLabel.text = profile.email
     }
     
     @objc private func handleSignOut() {
-        SessionUtils.handleSignOut()
+        SessionManager.shared.handleSignOut()
     }
     
     private lazy var imageView: AsyncImageView = {
